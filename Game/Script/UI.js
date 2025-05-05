@@ -9,9 +9,38 @@ const UI = {
 
     field: {
         buttonMenu: [1180, 20, 80, 80],
+        buttonInfo: [20, 20, 80, 80],
+    },
+
+    info: {
+
+    },
+
+    shopWindow: {
+
     },
 
     battle: {
 
+    },
+
+    fieldMenu: {
+        rect: [320, 280, 640, 240],
+        textPaused: [328, 304],
+        buttonResume: [320, 360, 640, 80],
+        textResume: [328, 384],
+        buttonExit: [320, 440, 640, 80],
+        textExit: [328, 464],
+    },
+
+    battleMenu: {
+        rect: [320, 240, 640, 320],
+        textPaused: [328, 324],
+        buttonResume: [320, 320, 640, 80],
+        textResume: [328, 404],
+        buttonSurrender: [320, 400, 640, 80],
+        textSurrender: [328, 424],
+        buttonExit: [320, 480, 640, 80],
+        textExit: [328, 504],
     }
 }

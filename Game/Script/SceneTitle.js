@@ -21,6 +21,11 @@ class SceneTitle {
     }
 
     static mouseUp(game, pos, button) {
-
+        if (button === 0) {
+            if (pointInsideRectUI(pos, UI.title.buttonStart)) {
+                game.scene = 'field'
+                game.state = ''
+            }
+        }
     }
 }
