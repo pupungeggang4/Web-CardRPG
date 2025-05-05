@@ -23,11 +23,11 @@ class Game {
         this.delta = this.frameCurrent - this.framePrevious
         
         if (game.scene === 'title') {
-            SceneTitle.loop(game)
+            SceneTitle.loop(this)
         } else if (game.scene === 'field') {
-            SceneField.loop(game)
+            SceneField.loop(this)
         } else if (game.scene === 'battle') {
-            SceneBattle.loop(game)
+            SceneBattle.loop(this)
         }
 
         this.gameLoop = requestAnimationFrame(() => this.loop())
@@ -42,11 +42,11 @@ class Game {
         let button = event.button
 
         if (this.scene === 'title') {
-            SceneTitle.mouseUp(game, pos, button)
+            SceneTitle.mouseUp(this, pos, button)
         } else if (this.scene === 'field') {
-            SceneField.mouseUp(game, pos, button)
+            SceneField.mouseUp(this, pos, button)
         } else if (this.scene === 'battle') {
-            SceneBattle.mouseUp(game, pos, button)
+            SceneBattle.mouseUp(this, pos, button)
         }
     }
 
@@ -54,11 +54,11 @@ class Game {
         let key = event.key
 
         if (this.scene === 'title') {
-            SceneTitle.keyDown(game, key)
+            SceneTitle.keyDown(this, key)
         } else if (this.scene === 'field') {
-            SceneField.keyDown(game, key)
+            SceneField.keyDown(this, key)
         } else if (this.scene === 'battle') {
-            SceneBattle.keyDown(game, key)
+            SceneBattle.keyDown(this, key)
         }
     }
 
@@ -66,11 +66,11 @@ class Game {
         let key = event.key
 
         if (this.scene === 'title') {
-            SceneTitle.keyUp(game, key)
+            SceneTitle.keyUp(this, key)
         } else if (this.scene === 'field') {
-            SceneField.keyUp(game, key)
+            SceneField.keyUp(this, key)
         } else if (this.scene === 'battle') {
-            SceneBattle.keyUp(game, key)
+            SceneBattle.keyUp(this, key)
         }
     }
 }
