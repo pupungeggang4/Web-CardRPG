@@ -22,11 +22,11 @@ class Game {
         this.frameCurrent = performance.now()
         this.delta = this.frameCurrent - this.framePrevious
         
-        if (game.scene === 'title') {
+        if (this.scene === 'title') {
             SceneTitle.loop(this)
-        } else if (game.scene === 'field') {
+        } else if (this.scene === 'field') {
             SceneField.loop(this)
-        } else if (game.scene === 'battle') {
+        } else if (this.scene === 'battle') {
             SceneBattle.loop(this)
         }
 
