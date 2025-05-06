@@ -6,8 +6,8 @@ class Render {
         ctx.strokeStyle = 'black'
         ctx.lineWidth = 2
         ctx.fillStyle = 'white'
-        ctx.fillRect(0, 0, 1280, 800)
-        ctx.strokeRect(0, 0, 1280, 800)
+        ctx.fillRect(0, 0, 1280, 720)
+        ctx.strokeRect(0, 0, 1280, 720)
         ctx.fillStyle = 'black'
     }
 
