@@ -19,9 +19,17 @@ class Render {
 
         this.fillTextUI(ctx, 'Paused', UI.fieldMenu.textPaused)
         this.strokeRectUI(ctx, UI.fieldMenu.buttonResume)
-        this.fillTextUI(ctx, 'Resume', UI.fieldMenu.textResume)
+        this.fillTextUI(ctx, 'Resume [R]', UI.fieldMenu.textResume)
         this.strokeRectUI(ctx, UI.fieldMenu.buttonExit)
-        this.fillTextUI(ctx, 'Exit', UI.fieldMenu.textExit)
+        this.fillTextUI(ctx, 'Exit [E]', UI.fieldMenu.textExit)
+    }
+
+    static renderImage(ctx, img, rect) {
+        ctx.drawImage(img, rect.position.x - rect.size.x / 2, rect.position.y - rect.size.y / 2, rect.size.x, rect.size.y)
+    }
+
+    static renderImageCam(ctx, img, rect, cam) {
+        ctx.drawImage(img, rect.position.x - cam.position.x - rect.size.x / 2 + cam.size.x / 2, rect.position.y - cam.position.y - rect.size.y / 2 + cam.size.y / 2, rect.size.x, rect.size.y)
     }
 
     static strokeRectUI(ctx, rect) {

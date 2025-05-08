@@ -1,8 +1,22 @@
 class Game {
     constructor() {
+        this.saveStatus = {}
+        this.loadData()
+
         this.scene = 'title'
         this.state = ''
         this.menu = false
+
+        this.keyMap = {
+            'left': 'a', 'right': 'd', 'up': 'w', 'down': 's'
+        }
+
+        this.keyPressed = {
+            'left': true, 'right': true, 'up': true, 'down': true
+        }
+
+        this.player = new Player()
+        this.field = new Field()
 
         this.canvas = document.getElementById('screen')
         this.ctx = this.canvas.getContext('2d')
@@ -15,6 +29,33 @@ class Game {
         this.framePrevious = performance.now()
         this.delta = 16
         this.gameLoop = requestAnimationFrame(() => this.loop())
+    }
+
+    loadData() {
+        let temp = localStorage.getItem('pupungeggang4-CardRPG')
+        if (temp === null) {
+            localStorage.setItem('pupungeggang4-CardRPG', JSON.stringify(emptySave))
+        }
+        this.saveStatus = JSON.parse(localStorage.getItem('pupungeggang4-CardRPG'))
+    }
+
+    saveData() {
+        localStorage.setItem('pupungeggang4-CardRPG', JSON.stringify(this.saveStatus))
+    }
+
+    eraseData() {
+        localStorage.setItem('pupungeggang4-CardRPG', JSON.stringify(emptySave))
+        this.saveStatus = JSON.parse(localStorage.getItem('pupungeggang4-CardRPG'))
+    }
+
+    fieldTransition() {
+        this.scene = 'field'
+        this.state = ''
+        this.player = new Player()
+        this.player.loadFromSave(this)
+        this.field = new Field()
+        this.field.loadFromData(this.player.place)
+        this.field.setPlayer(this.player)
     }
 
     loop() {
@@ -53,6 +94,12 @@ class Game {
     keyDown(event) {
         let key = event.key
 
+        for (let k in this.keyPressed) {
+            if (key === this.keyMap[k]) {
+                this.keyPressed[k] = true
+            }
+        }
+
         if (this.scene === 'title') {
             SceneTitle.keyDown(this, key)
         } else if (this.scene === 'field') {
@@ -64,6 +111,12 @@ class Game {
 
     keyUp(event) {
         let key = event.key
+
+        for (let k in this.keyPressed) {
+            if (key === this.keyMap[k]) {
+                this.keyPressed[k] = true
+            }
+        }
 
         if (this.scene === 'title') {
             SceneTitle.keyUp(this, key)
