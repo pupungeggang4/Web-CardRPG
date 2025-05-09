@@ -48,6 +48,19 @@ class PlayerAdventure {
         }
     }
 
+    moveDirection(game, field, direction) {
+        if (this.moving === false) {
+            let tempPosition = [this.position[0] + this.moveset[direction][0], this.position[1] + this.moveset[direction][1]]
+            if (cellInsideArray(tempPosition[0], tempPosition[1], field.size[0], field.size[1])) {
+                if (field.wall[tempPosition[0]][tempPosition[1]] === 0) {
+                    this.position = tempPosition
+                    this.moveVector = new Vector2D(this.position[1] * 80 + 40, this.position[0] * 80 + 40)
+                    this.moving = true
+                }
+            }
+        }
+    }
+
     render(game, field) {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
         this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height)

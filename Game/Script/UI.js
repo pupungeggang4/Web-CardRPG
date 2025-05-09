@@ -8,8 +8,16 @@ const UI = {
     },
 
     field: {
+        tutorialBox: [],
+        tutorialText1: [],
+        tutorialText2: [],
+        moveLeft: [40, 520, 80, 80],
+        moveRight: [200, 520, 80, 80],
+        moveUp: [120, 440, 80, 80],
+        moveDown: [120, 600, 80, 80],
+        interact: [40, 320, 80, 80],
         buttonMenu: [1180, 20, 80, 80],
-        buttonInfo: [20, 20, 80, 80],
+        buttonInfo: [1180, 600, 80, 80],
     },
 
     info: {
