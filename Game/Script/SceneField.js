@@ -1,5 +1,10 @@
 class SceneField {
     static loop(game) {
+        if (game.menu === false) {
+            if (game.state === '') {
+                game.field.handleTick(game)
+            }
+        }
         this.render(game)
     }
 
@@ -11,6 +16,10 @@ class SceneField {
 
         game.field.render(game)
 
+        game.ctx.fillStyle = 'white'
+        Render.fillRectUI(game.ctx, UI.field.buttonMenu)
+        Render.fillRectUI(game.ctx, UI.field.buttonInfo)
+        game.ctx.fillStyle = 'black'
         Render.strokeRectUI(game.ctx, UI.field.buttonMenu)
         Render.strokeRectUI(game.ctx, UI.field.buttonInfo)
 

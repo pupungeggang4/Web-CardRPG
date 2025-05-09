@@ -12,7 +12,7 @@ class Game {
         }
 
         this.keyPressed = {
-            'left': true, 'right': true, 'up': true, 'down': true
+            'left': false, 'right': false, 'up': false, 'down': false
         }
 
         this.player = new Player()
@@ -114,7 +114,7 @@ class Game {
 
         for (let k in this.keyPressed) {
             if (key === this.keyMap[k]) {
-                this.keyPressed[k] = true
+                this.keyPressed[k] = false
             }
         }
 
@@ -130,4 +130,8 @@ class Game {
 
 function pointInsideRectUI(pos, rect) {
     return pos.x > rect[0] && pos.x < rect[0] + rect[2] && pos.y > rect[1] && pos.y < rect[1] + rect[3]
+}
+
+function cellInsideArray(row, col, aRow, aCol) {
+    return row >= 0 && col >= 0 && row < aRow && col < aCol
 }
