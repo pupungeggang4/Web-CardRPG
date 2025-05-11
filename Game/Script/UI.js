@@ -8,9 +8,9 @@ const UI = {
     },
 
     field: {
-        tutorialBox: [],
-        tutorialText1: [],
-        tutorialText2: [],
+        upperBox: [20, 20, 400, 80],
+        upperText1: [24, 24],
+        upperText2: [24, 64],
         moveLeft: [40, 520, 80, 80],
         moveRight: [200, 520, 80, 80],
         moveUp: [120, 440, 80, 80],

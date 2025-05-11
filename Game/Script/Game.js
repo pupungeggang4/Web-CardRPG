@@ -1,5 +1,6 @@
 class Game {
     constructor() {
+        imageLoad()
         this.saveStatus = {}
         this.loadData()
 

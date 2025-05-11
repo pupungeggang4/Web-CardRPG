@@ -2,10 +2,13 @@ class PlayerAdventure {
     constructor() {
         this.place = ''
         this.position = [0, 0]
-        this.rect = new Rect2D(0, 0, 80, 80)
-        this.speed = 320.0
         this.facing = ''
         this.moving = false
+        this.tempPlace = ''
+        this.tempCoord = [0, 0]
+
+        this.rect = new Rect2D(0, 0, 80, 80)
+        this.speed = 320.0
         this.moveset = {'up': [-1, 0], 'left': [0, -1], 'down': [1, 0], 'right': [0, 1]}
         this.moveVector = new Vector2D(0, 0)
 
@@ -61,6 +64,19 @@ class PlayerAdventure {
         }
     }
 
+    interact(game, field) {
+        let thing = field.tile[this.position[0]][this.position[1]]
+        if (thing.constructor === Portal) {
+            let destination = thing.destination
+            let destCoord = thing.destCoord
+            field.loadFromData(destination)
+            this.place = destination
+            game.player.place = this.place
+            this.position = JSON.parse(JSON.stringify(thing.destCoord))
+            this.rect.position = new Vector2D(this.position[1] * 80 + 40, this.position[0] * 80 + 40)
+        }
+    }
+
     render(game, field) {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
         this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height)
@@ -75,6 +91,9 @@ class Field {
         this.wall = []
         this.spawn = [0, 0]
         this.size = [0, 0]
+        this.thing = []
+        this.spawned = []
+
         this.camera = new Rect2D(40, 40, 1280, 720)
         this.rect = new Rect2D(0, 0, 0, 0)
         this.canvas = document.createElement('canvas')
@@ -94,8 +113,26 @@ class Field {
     loadFromData(place) {
         let data = JSON.parse(JSON.stringify(dataField[place]))
         this.wall = data['wall']
-        this.spawn = data['spawn']
+        this.tile = []
         this.size = data['size']
+        
+        for (let i = 0; i < data['size'][0]; i++) {
+            let temp = []
+            for (let j = 0; j < data['size'][1]; j++) {
+                temp.push(new Empty())
+            }
+            this.tile.push(temp)
+        }
+        
+        for (let i = 0; i < data['thing'].length; i++) {
+            let t = data['thing'][i]
+            if (t[0] === 'portal') {
+                let thing = new Portal()
+                thing.setData(t[2], t[3])
+                this.tile[t[1][0]][t[1][1]] = thing
+                thing.rect.position = new Vector2D(t[1][1] * 80 + 40, t[1][0] * 80 + 40)
+            }
+        }
 
         this.canvas.width = this.size[1] * 80
         this.canvas.height = this.size[0] * 80
@@ -117,7 +154,53 @@ class Field {
         this.ctx.fillStyle = 'white'
         this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height)
         this.ctx.fillStyle = 'black'
+        for (let i = 0; i < this.size[0]; i++) {
+            for (let j = 0; j < this.size[1]; j++) {
+                this.tile[i][j].render(game, this)
+            }
+        }
         this.player.render(game, this)
         Render.renderImageCam(game.ctx, this.canvas, this.rect, this.camera)
+    }
+}
+
+class Thing {
+    constructor() {
+
+    }
+
+    render() {
+
+    }
+}
+
+class Empty extends Thing {
+    constructor() {
+        super()
+    }
+}
+
+class Portal extends Thing {
+    constructor() {
+        super()
+        this.destination = ''
+        this.destCoord = [0, 0]
+        this.rect = new Rect2D(0, 0, 80, 80)
+        this.canvas = document.createElement('canvas')
+        this.canvas.width = this.rect.size.x
+        this.canvas.height = this.rect.size.y
+        this.ctx = this.canvas.getContext('2d')
+    }
+
+    setData(dest, coord) {
+        this.destination = dest
+        this.destCoord = JSON.parse(JSON.stringify(coord))
+    }
+
+    render(game, field) {
+        this.ctx.fillStyle = 'Blue'
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
+        this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height)
+        Render.renderImage(field.ctx, this.canvas, this.rect)
     }
 }

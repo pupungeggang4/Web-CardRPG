@@ -17,19 +17,19 @@ class SceneField {
         game.field.render(game)
 
         game.ctx.fillStyle = 'white'
-        Render.fillRectUI(game.ctx, UI.field.buttonMenu)
-        Render.fillRectUI(game.ctx, UI.field.buttonInfo)
-        Render.fillRectUI(game.ctx, UI.field.moveLeft)
-        Render.fillRectUI(game.ctx, UI.field.moveRight)
-        Render.fillRectUI(game.ctx, UI.field.moveUp)
-        Render.fillRectUI(game.ctx, UI.field.moveDown)
+        Render.fillRectUI(game.ctx, UI.field.upperBox)
+        Render.strokeRectUI(game.ctx, UI.field.upperBox)
         game.ctx.fillStyle = 'black'
-        Render.strokeRectUI(game.ctx, UI.field.buttonMenu)
-        Render.strokeRectUI(game.ctx, UI.field.buttonInfo)
-        Render.strokeRectUI(game.ctx, UI.field.moveLeft)
-        Render.strokeRectUI(game.ctx, UI.field.moveRight)
-        Render.strokeRectUI(game.ctx, UI.field.moveUp)
-        Render.strokeRectUI(game.ctx, UI.field.moveDown)
+        Render.fillTextUI(game.ctx, `${game.player.place}`, UI.field.upperText1)
+        Render.fillTextUI(game.ctx, `[WASD] Move [E] Interact`, UI.field.upperText2)
+
+        Render.drawImageUI(game.ctx, img.button.menu, UI.field.buttonMenu)
+        Render.drawImageUI(game.ctx, img.button.info, UI.field.buttonInfo)
+        Render.drawImageUI(game.ctx, img.button.interact, UI.field.interact)
+        Render.drawImageUI(game.ctx, img.button.left, UI.field.moveLeft)
+        Render.drawImageUI(game.ctx, img.button.right, UI.field.moveRight)
+        Render.drawImageUI(game.ctx, img.button.up, UI.field.moveUp)
+        Render.drawImageUI(game.ctx, img.button.down, UI.field.moveDown)
 
         if (game.menu === true) {
             Render.renderFieldMenu(game.ctx)
@@ -44,6 +44,11 @@ class SceneField {
         if (game.menu === false) {
             if (key === 'Escape') {
                 game.menu = true
+            }
+            if (game.state === '') {
+                if (key === 'e') {
+                    game.field.player.interact(game, game.field)
+                }
             }
         } else if (game.menu === true) {
             if (key === 'Escape') {
@@ -73,6 +78,8 @@ class SceneField {
                         game.field.player.moveDirection(game, game.field, 'up')
                     } else if (pointInsideRectUI(pos, UI.field.moveDown)) {
                         game.field.player.moveDirection(game, game.field, 'down')
+                    } else if (pointInsideRectUI(pos, UI.field.interact)) {
+                        game.field.player.interact(game, game.field)
                     }
                 }
             } else if (game.menu === true) {
