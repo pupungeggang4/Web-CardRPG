@@ -31,6 +31,13 @@ class SceneField {
         Render.drawImageUI(game.ctx, img.button.up, UI.field.moveUp)
         Render.drawImageUI(game.ctx, img.button.down, UI.field.moveDown)
 
+        if (game.state === 'adventure_start') {
+            Render.renderAdventureStart(game.ctx)
+        }
+        if (game.state === 'adventure_end') {
+            Render.renderAdventureEnd(game.ctx)
+        }
+
         if (game.menu === true) {
             Render.renderFieldMenu(game.ctx)
         }
@@ -48,6 +55,21 @@ class SceneField {
             if (game.state === '') {
                 if (key === 'e') {
                     game.field.player.interact(game, game.field)
+                }
+            } else if (game.state === 'adventure_start') {
+                if (key === 'y') {
+                    game.state = ''
+                    game.field.adventureStart()
+                    game.field.player.fieldMove(game, game.field)
+                } else if (key === 'n') {
+                    game.state = ''
+                }
+            } else if (game.state === 'adventure_end') {
+                if (key === 'y') {
+                    game.state = ''
+                    game.field.player.fieldMove(game, game.field)
+                } else if (key === 'n') {
+                    game.state = ''
                 }
             }
         } else if (game.menu === true) {
@@ -80,6 +102,21 @@ class SceneField {
                         game.field.player.moveDirection(game, game.field, 'down')
                     } else if (pointInsideRectUI(pos, UI.field.interact)) {
                         game.field.player.interact(game, game.field)
+                    }
+                } else if (game.state === 'adventure_start') {
+                    if (pointInsideRectUI(pos, UI.adventureWindow.buttonYes)) {
+                        game.state = ''
+                        game.field.adventureStart()
+                        game.field.player.fieldMove(game, game.field)
+                    } else if (pointInsideRectUI(pos, UI.adventureWindow.buttonNo)) {
+                        game.state = ''
+                    }
+                } else if (game.state === 'adventure_end') {
+                    if (pointInsideRectUI(pos, UI.adventureWindow.buttonYes)) {
+                        game.state = ''
+                        game.field.player.fieldMove(game, game.field)
+                    } else if (pointInsideRectUI(pos, UI.adventureWindow.buttonNo)) {
+                        game.state = ''
                     }
                 }
             } else if (game.menu === true) {

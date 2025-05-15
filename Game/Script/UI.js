@@ -20,6 +20,15 @@ const UI = {
         buttonInfo: [1180, 600, 80, 80],
     },
 
+    adventureWindow: {
+        rect: [320, 240, 640, 240],
+        textTitle: [324, 264],
+        buttonYes: [400, 360, 160, 80],
+        textYes: [404, 384],
+        buttonNo: [720, 360, 160, 80],
+        textNo: [724, 384]
+    },
+
     info: {
 
     },

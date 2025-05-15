@@ -11,6 +11,32 @@ class Render {
         ctx.fillStyle = 'black'
     }
 
+    static renderAdventureStart(ctx) {
+        ctx.fillStyle = 'white'
+        this.fillRectUI(ctx, UI.adventureWindow.rect)
+        this.strokeRectUI(ctx, UI.adventureWindow.rect)
+        ctx.fillStyle = 'black'
+        
+        this.fillTextUI(ctx, 'Start Adventure?', UI.adventureWindow.textTitle)
+        this.strokeRectUI(ctx, UI.adventureWindow.buttonYes)
+        this.fillTextUI(ctx, 'Yes [Y]', UI.adventureWindow.textYes)
+        this.strokeRectUI(ctx, UI.adventureWindow.buttonNo)
+        this.fillTextUI(ctx, 'No [N]', UI.adventureWindow.textNo)
+    }
+
+    static renderAdventureEnd(ctx) {
+        ctx.fillStyle = 'white'
+        this.fillRectUI(ctx, UI.adventureWindow.rect)
+        this.strokeRectUI(ctx, UI.adventureWindow.rect)
+        ctx.fillStyle = 'black'
+        
+        this.fillTextUI(ctx, 'End Adventure?', UI.adventureWindow.textTitle)
+        this.strokeRectUI(ctx, UI.adventureWindow.buttonYes)
+        this.fillTextUI(ctx, 'Yes [Y]', UI.adventureWindow.textYes)
+        this.strokeRectUI(ctx, UI.adventureWindow.buttonNo)
+        this.fillTextUI(ctx, 'No [N]', UI.adventureWindow.textNo)
+    }
+
     static renderFieldMenu(ctx) {
         ctx.fillStyle = 'white'
         this.fillRectUI(ctx, UI.fieldMenu.rect)

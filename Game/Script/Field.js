@@ -6,6 +6,7 @@ class PlayerAdventure {
         this.moving = false
         this.tempPlace = ''
         this.tempCoord = [0, 0]
+        this.adventureMode = false
 
         this.rect = new Rect2D(0, 0, 80, 80)
         this.speed = 320.0
@@ -67,14 +68,25 @@ class PlayerAdventure {
     interact(game, field) {
         let thing = field.tile[this.position[0]][this.position[1]]
         if (thing.constructor === Portal) {
-            let destination = thing.destination
-            let destCoord = thing.destCoord
-            field.loadFromData(destination)
-            this.place = destination
-            game.player.place = this.place
-            this.position = JSON.parse(JSON.stringify(thing.destCoord))
-            this.rect.position = new Vector2D(this.position[1] * 80 + 40, this.position[0] * 80 + 40)
+            this.tempPlace = thing.destination
+            this.tempCoord = JSON.parse(JSON.stringify(thing.destCoord))
+
+            if (this.adventureMode === false && dataField[this.tempPlace]['village'] === false) {
+                game.state = 'adventure_start'
+            } else if (this.adventureMode === true && dataField[this.tempPlace]['village'] === true) {
+                game.state = 'adventure_end'
+            } else {
+                this.fieldMove(game, field)
+            }
         }
+    }
+
+    fieldMove(game, field) {
+        field.loadFromData(this.tempPlace)
+        this.place = this.tempPlace
+        game.player.place = this.place
+        this.position = JSON.parse(JSON.stringify(this.tempCoord))
+        this.rect.position = new Vector2D(this.position[1] * 80 + 40, this.position[0] * 80 + 40)
     }
 
     render(game, field) {
@@ -92,7 +104,7 @@ class Field {
         this.spawn = [0, 0]
         this.size = [0, 0]
         this.thing = []
-        this.spawned = []
+        this.spawned = {}
 
         this.camera = new Rect2D(40, 40, 1280, 720)
         this.rect = new Rect2D(0, 0, 0, 0)
@@ -134,9 +146,31 @@ class Field {
             }
         }
 
+        if (data['village'] === false) {
+            for (let i = 0; i < this.spawned[place]['monster'].length; i++) {
+                let pos = this.spawned[place]['monster'][i]
+                console.log(pos)
+                let thing = new Monster()
+                thing.ID = 1
+                this.tile[pos[0]][pos[1]] = thing
+                thing.rect.position = new Vector2D(pos[1] * 80 + 40, pos[0] * 80 + 40)
+            }
+        }
+
         this.canvas.width = this.size[1] * 80
         this.canvas.height = this.size[0] * 80
         this.rect = new Rect2D(this.canvas.width / 2, this.canvas.height / 2, this.canvas.width, this.canvas.height)
+    }
+
+    adventureStart() {
+        this.spawned = {}
+        for (let place in dataField) {
+            console.log(place)
+            if (dataField[place]['village'] === false) {
+                this.spawned[place] = {}
+                this.spawned[place]['monster'] = JSON.parse(JSON.stringify(dataField[place]['spawn']))
+            }
+        }
     }
 
     handleTick(game, field) {
@@ -199,6 +233,29 @@ class Portal extends Thing {
 
     render(game, field) {
         this.ctx.fillStyle = 'Blue'
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
+        this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height)
+        Render.renderImage(field.ctx, this.canvas, this.rect)
+    }
+}
+
+class Monster extends Thing {
+    constructor() {
+        super()
+        this.rect = new Rect2D(0, 0, 80, 80)
+        this.canvas = document.createElement('canvas')
+        this.canvas.width = this.rect.size.x
+        this.canvas.height = this.rect.size.y
+        this.ctx = this.canvas.getContext('2d')
+        this.ID = 0
+    }
+
+    setData(ID) {
+        this.ID = ID
+    }
+
+    render(game, field) {
+        this.ctx.fillStyle = 'Green'
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
         this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height)
         Render.renderImage(field.ctx, this.canvas, this.rect)

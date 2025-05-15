@@ -39,8 +39,7 @@ const dataField = {
         'thing': [
             ['portal', [0, 5], 'home_town', [8, 5]]
         ],
-        'spawn': [],
-        'spawnID': [],
-
+        'spawn': [[2, 2], [6, 2], [2, 7], [6, 7]],
+        'spawnID': [1],
     }
 }
