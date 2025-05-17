@@ -21,7 +21,7 @@ class SceneField {
         Render.strokeRectUI(game.ctx, UI.field.upperBox)
         game.ctx.fillStyle = 'black'
         Render.fillTextUI(game.ctx, `${game.player.place}`, UI.field.upperText1)
-        Render.fillTextUI(game.ctx, `[WASD] Move [E] Interact`, UI.field.upperText2)
+        Render.fillTextUI(game.ctx, `[WASD] Move [E] Interact [R] Info`, UI.field.upperText2)
 
         Render.drawImageUI(game.ctx, img.button.menu, UI.field.buttonMenu)
         Render.drawImageUI(game.ctx, img.button.info, UI.field.buttonInfo)
@@ -31,6 +31,9 @@ class SceneField {
         Render.drawImageUI(game.ctx, img.button.up, UI.field.moveUp)
         Render.drawImageUI(game.ctx, img.button.down, UI.field.moveDown)
 
+        if (game.state === 'info') {
+            Render.renderInfo(game.ctx, game.player)
+        }
         if (game.state === 'adventure_start') {
             Render.renderAdventureStart(game.ctx)
         }
@@ -55,6 +58,13 @@ class SceneField {
             if (game.state === '') {
                 if (key === 'e') {
                     game.field.player.interact(game, game.field)
+                } else if (key === 'r') {
+                    game.state = 'info'
+                    game.stateInfo = 'profile'
+                }
+            } else if (game.state === 'info') {
+                if (key === 'r') {
+                    game.state = ''
                 }
             } else if (game.state === 'adventure_start') {
                 if (key === 'y') {
@@ -102,6 +112,13 @@ class SceneField {
                         game.field.player.moveDirection(game, game.field, 'down')
                     } else if (pointInsideRectUI(pos, UI.field.interact)) {
                         game.field.player.interact(game, game.field)
+                    } else if (pointInsideRectUI(pos, UI.field.buttonInfo)) {
+                        game.state = 'info'
+                        game.stateInfo = 'profile'
+                    }
+                } else if (game.state === 'info') {
+                    if (pointInsideRectUI(pos, UI.info.buttonClose)) {
+                        game.state = ''
                     }
                 } else if (game.state === 'adventure_start') {
                     if (pointInsideRectUI(pos, UI.adventureWindow.buttonYes)) {

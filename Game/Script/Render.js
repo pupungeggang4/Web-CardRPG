@@ -11,6 +11,24 @@ class Render {
         ctx.fillStyle = 'black'
     }
 
+    static renderInfo(ctx, player) {
+        ctx.fillStyle = 'white'
+        this.fillRectUI(ctx, UI.info.rect)
+        this.strokeRectUI(ctx, UI.info.rect)
+        ctx.fillStyle = 'black'
+        this.strokeRectUI(ctx, UI.info.buttonClose)
+        this.strokeRectUI(ctx, UI.info.tabProfile)
+        this.strokeRectUI(ctx, UI.info.tabSetting)
+        this.strokeRectUI(ctx, UI.info.tabCard)
+        this.strokeRectUI(ctx, UI.info.tabEquipment)
+        this.strokeRectUI(ctx, UI.info.tabItem)
+        this.strokeRectUI(ctx, UI.info.tabMap)
+
+        if (game.stateInfo === 'profile') {
+
+        }
+    }
+
     static renderAdventureStart(ctx) {
         ctx.fillStyle = 'white'
         this.fillRectUI(ctx, UI.adventureWindow.rect)

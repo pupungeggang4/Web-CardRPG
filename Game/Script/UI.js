@@ -8,7 +8,7 @@ const UI = {
     },
 
     field: {
-        upperBox: [20, 20, 400, 80],
+        upperBox: [20, 20, 620, 80],
         upperText1: [24, 24],
         upperText2: [24, 64],
         moveLeft: [40, 520, 80, 80],
@@ -30,7 +30,33 @@ const UI = {
     },
 
     info: {
+        rect: [160, 40, 960, 640],
+        buttonClose: [1080, 40, 40, 40],
+        tabProfile: [160, 40, 160, 40],
+        tabSetting: [320, 40, 160, 40],
+        tabCard: [480, 40, 160, 40],
+        tabEquipment: [640, 40, 160, 40],
+        tabItem: [800, 40, 160, 40],
+        tabMap: [960, 40, 120, 40],
+        imageTabCenter: [],
+        profile: {
 
+        },
+        setting: {
+
+        },
+        card: {
+
+        },
+        equipment: {
+
+        },
+        item: {
+
+        },
+        map: {
+
+        }
     },
 
     shopWindow: {

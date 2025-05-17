@@ -6,6 +6,7 @@ class Game {
 
         this.scene = 'title'
         this.state = ''
+        this.stateInfo = 'profile'
         this.menu = false
 
         this.keyMap = {
