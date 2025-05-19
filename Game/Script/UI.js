@@ -40,7 +40,10 @@ const UI = {
         tabMap: [960, 40, 120, 40],
         imageTabCenter: [],
         profile: {
-
+            name: [],
+            portrait: [],
+            textLevel: [],
+            textExp: [],
         },
         setting: {
 

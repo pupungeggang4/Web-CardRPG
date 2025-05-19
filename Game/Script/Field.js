@@ -78,6 +78,17 @@ class PlayerAdventure {
             } else {
                 this.fieldMove(game, field)
             }
+        } else if (thing.constructor === Monster) {
+            field.tile[this.position[0]][this.position[1]] = new Empty()
+            let s = field.spawned[this.place]['monster']
+            for (let i in s) {
+                if (s[i][0] === this.position[0] && s[i][1] === this.position[1]) {
+                    s.splice(i, 1)
+                    break
+                }
+            }
+            game.scene = 'battle'
+            game.state = ''
         }
     }
 
@@ -151,6 +162,7 @@ class Field {
                 let pos = this.spawned[place]['monster'][i]
                 console.log(pos)
                 let thing = new Monster()
+                let index = Math.floor()
                 thing.ID = 1
                 this.tile[pos[0]][pos[1]] = thing
                 thing.rect.position = new Vector2D(pos[1] * 80 + 40, pos[0] * 80 + 40)
