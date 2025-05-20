@@ -1,8 +1,8 @@
 const emptySave = {
-    level: 0,
+    level: 1,
     exp: 0,
-    expMax: 0,
-    gold: 0,
+    expMax: 50,
+    gold: 50,
     item: {
 
     },

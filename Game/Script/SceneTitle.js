@@ -26,6 +26,8 @@ class SceneTitle {
         if (button === 0) {
             if (pointInsideRectUI(pos, UI.title.buttonStart)) {
                 game.fieldTransition()
+            } else if (pointInsideRectUI(pos, UI.title.buttonErase)) {
+                game.eraseData()
             }
         }
     }

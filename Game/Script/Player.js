@@ -13,6 +13,7 @@ class Player {
         this.starting = {
 
         }
+        this.startingSelect = 1
         this.place = 'home_town'
     }
 

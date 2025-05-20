@@ -25,7 +25,32 @@ class Render {
         this.strokeRectUI(ctx, UI.info.tabMap)
 
         if (game.stateInfo === 'profile') {
+            this.renderProfile(ctx, player)
+        }
+    }
 
+    static renderProfile(ctx, player) {
+        this.fillTextUI(ctx, `Name`, UI.info.profile.textName)
+        this.strokeRectUI(ctx, UI.info.profile.portrait)
+        this.fillTextUI(ctx, `Lv. ${player.level}`, UI.info.profile.textLevel)
+        this.fillTextUI(ctx, `Exp.${player.exp}/${player.expMax}`, UI.info.profile.textExp)
+    }
+
+    static renderInfoAdventure(ctx, player, playerAdventure) {
+        ctx.fillStyle = 'white'
+        this.fillRectUI(ctx, UI.info.rect)
+        this.strokeRectUI(ctx, UI.info.rect)
+        ctx.fillStyle = 'black'
+        this.strokeRectUI(ctx, UI.info.buttonClose)
+        this.strokeRectUI(ctx, UI.info.tabProfile)
+        //this.strokeRectUI(ctx, UI.info.tabSetting)
+        this.strokeRectUI(ctx, UI.info.tabCard)
+        this.strokeRectUI(ctx, UI.info.tabEquipment)
+        this.strokeRectUI(ctx, UI.info.tabItem)
+        this.strokeRectUI(ctx, UI.info.tabMap)
+
+        if (game.stateInfo === 'profile') {
+            this.renderProfile(ctx, player)
         }
     }
 

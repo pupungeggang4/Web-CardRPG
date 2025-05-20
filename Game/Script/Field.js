@@ -8,6 +8,10 @@ class PlayerAdventure {
         this.tempCoord = [0, 0]
         this.adventureMode = false
 
+        this.deck = []
+        this.equipment = []
+        this.item = []
+
         this.rect = new Rect2D(0, 0, 80, 80)
         this.speed = 320.0
         this.moveset = {'up': [-1, 0], 'left': [0, -1], 'down': [1, 0], 'right': [0, 1]}
@@ -100,6 +104,20 @@ class PlayerAdventure {
         this.rect.position = new Vector2D(this.position[1] * 80 + 40, this.position[0] * 80 + 40)
     }
 
+    adventureStart(player) {
+        this.deck = []
+        for (let i = 0; i < dataDeck[player.startingSelect]['card'].length; i++) {
+            let card = new Card()
+            card.setData(dataDeck[player.startingSelect]['card'][i])
+            this.deck.push(card)
+            this.adventureMode = true
+        }
+    }
+
+    adventureEnd() {
+        this.adventureMode = false
+    }
+
     render(game, field) {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
         this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height)
@@ -160,7 +178,6 @@ class Field {
         if (data['village'] === false) {
             for (let i = 0; i < this.spawned[place]['monster'].length; i++) {
                 let pos = this.spawned[place]['monster'][i]
-                console.log(pos)
                 let thing = new Monster()
                 let index = Math.floor()
                 thing.ID = 1
@@ -174,15 +191,15 @@ class Field {
         this.rect = new Rect2D(this.canvas.width / 2, this.canvas.height / 2, this.canvas.width, this.canvas.height)
     }
 
-    adventureStart() {
+    adventureStart(game) {
         this.spawned = {}
         for (let place in dataField) {
-            console.log(place)
             if (dataField[place]['village'] === false) {
                 this.spawned[place] = {}
                 this.spawned[place]['monster'] = JSON.parse(JSON.stringify(dataField[place]['spawn']))
             }
         }
+        this.player.adventureStart(game.player)
     }
 
     handleTick(game, field) {

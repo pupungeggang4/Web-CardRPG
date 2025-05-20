@@ -32,7 +32,11 @@ class SceneField {
         Render.drawImageUI(game.ctx, img.button.down, UI.field.moveDown)
 
         if (game.state === 'info') {
-            Render.renderInfo(game.ctx, game.player)
+            if (game.field.player.adventureMode === false) {
+                Render.renderInfo(game.ctx, game.player)
+            } else {
+                Render.renderInfoAdventure(game.ctx, game.player, game.field.player)
+            }
         }
         if (game.state === 'adventure_start') {
             Render.renderAdventureStart(game.ctx)
@@ -69,7 +73,7 @@ class SceneField {
             } else if (game.state === 'adventure_start') {
                 if (key === 'y') {
                     game.state = ''
-                    game.field.adventureStart()
+                    game.field.adventureStart(game)
                     game.field.player.fieldMove(game, game.field)
                 } else if (key === 'n') {
                     game.state = ''
@@ -78,6 +82,7 @@ class SceneField {
                 if (key === 'y') {
                     game.state = ''
                     game.field.player.fieldMove(game, game.field)
+                    game.field.player.adventureEnd()
                 } else if (key === 'n') {
                     game.state = ''
                 }
@@ -117,13 +122,13 @@ class SceneField {
                         game.stateInfo = 'profile'
                     }
                 } else if (game.state === 'info') {
-                    if (pointInsideRectUI(pos, UI.info.buttonClose)) {
+                    if (pointInsideRectUI(pos, UI.info.buttonClose) || pointInsideRectUI(pos, UI.field.buttonInfo)) {
                         game.state = ''
                     }
                 } else if (game.state === 'adventure_start') {
                     if (pointInsideRectUI(pos, UI.adventureWindow.buttonYes)) {
                         game.state = ''
-                        game.field.adventureStart()
+                        game.field.adventureStart(game)
                         game.field.player.fieldMove(game, game.field)
                     } else if (pointInsideRectUI(pos, UI.adventureWindow.buttonNo)) {
                         game.state = ''
@@ -132,6 +137,7 @@ class SceneField {
                     if (pointInsideRectUI(pos, UI.adventureWindow.buttonYes)) {
                         game.state = ''
                         game.field.player.fieldMove(game, game.field)
+                        game.field.player.adventureEnd()
                     } else if (pointInsideRectUI(pos, UI.adventureWindow.buttonNo)) {
                         game.state = ''
                     }
@@ -142,7 +148,7 @@ class SceneField {
                 } else if (pointInsideRectUI(pos, UI.fieldMenu.buttonExit)) {
                     game.menu = false
                     game.scene = 'title'
-                    game.statae = ''
+                    game.state = ''
                 }
             }
         }

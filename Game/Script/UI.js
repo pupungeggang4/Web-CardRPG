@@ -33,17 +33,17 @@ const UI = {
         rect: [160, 40, 960, 640],
         buttonClose: [1080, 40, 40, 40],
         tabProfile: [160, 40, 160, 40],
-        tabSetting: [320, 40, 160, 40],
+        tabMap: [320, 40, 160, 40],
         tabCard: [480, 40, 160, 40],
         tabEquipment: [640, 40, 160, 40],
         tabItem: [800, 40, 160, 40],
-        tabMap: [960, 40, 120, 40],
+        tabSetting: [960, 40, 120, 40],
         imageTabCenter: [],
         profile: {
-            name: [],
-            portrait: [],
-            textLevel: [],
-            textExp: [],
+            textName: [164, 84],
+            portrait: [200, 120, 160, 160],
+            textLevel: [164, 284],
+            textExp: [164, 324],
         },
         setting: {
 
