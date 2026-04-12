@@ -1,0 +1,19 @@
+{
+  "name": "cardrpg",
+  "version": "1.0.0",
+  "description": "Card RPG Game",
+  "main": "game/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pupungeggang4/Web-CardRPG.git"
+  },
+  "author": "pupungeggang4",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pupungeggang4/Web-CardRPG/issues"
+  },
+  "homepage": "https://github.com/pupungeggang4/Web-CardRPG#readme"
+}
