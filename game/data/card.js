@@ -1,0 +1,5 @@
+class DataCard {
+    static data = {
+
+    }
+}

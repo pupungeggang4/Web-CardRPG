@@ -1,0 +1,5 @@
+class DataEquipment {
+    static data = {
+
+    }
+}

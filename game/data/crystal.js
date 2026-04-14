@@ -1,0 +1,5 @@
+class DataCrystal {
+    static data = {
+
+    }
+}
