@@ -2,14 +2,18 @@ window.onload = main
 window.onerror = errorHandle
 window.oncontextmenu = rightClick
 
-function main() {
+let game
 
+function main() {
+    game = new Game()
 }
 
-function errorHandle() {
+function errorHandle(msg, src, l, c, err) {
+    if (err != null) {
 
+    }
 }
 
 function rightClick() {
-
+    return false;
 }
