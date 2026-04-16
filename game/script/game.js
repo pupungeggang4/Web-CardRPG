@@ -6,10 +6,14 @@ class Game {
 
         this.canvas = document.getElementById('screen')
         this.ctx = this.canvas.getContext('2d')
+        this.targetRect = this.canvas.getBoundingClientRect()
 
-        this.canvas.addEventListener('pointerdown', (event) => this.pointerDown(event), false)
-        this.canvas.addEventListener('pointermove', (event) => this.pointerMove(event), false)
-        this.canvas.addEventListener('pointerup', (event) => this.pointerUp(event), false)
+        window.addEventListener('pointerdown', (event) => this.pointerDown(event), false)
+        window.addEventListener('pointermove', (event) => this.pointerMove(event), false)
+        window.addEventListener('pointerup', (event) => this.pointerUp(event), false)
+        window.addEventListener('resize', (event) => {
+            this.targetRect = this.canvas.getBoundingClientRect()
+        })
     }
 
     run() {
@@ -40,7 +44,13 @@ class Game {
     }
 
     pointerDown(event) {
-        
+        let pos = {
+            x: (event.clientX - this.targetRect.left) / this.targetRect.width * this.canvas.width,
+            y: (event.clientY - this.targetRect.top) / this.targetRect.height * this.canvas.height
+        }
+        let button = event.button
+
+        this.scene.pointerDown(this, pos, button)
     }
 
     pointerMove(event) {
@@ -48,6 +58,13 @@ class Game {
     }
 
     pointerUp(event) {
+        let pos = {
+            x: (event.clientX - this.targetRect.left) / this.targetRect.width * this.canvas.width,
+            y: (event.clientY - this.targetRect.top) / this.targetRect.height * this.canvas.height
+        }
+        let button = event.button
+
+        this.scene.pointerUp(this, pos, button)
 
     }
 }
