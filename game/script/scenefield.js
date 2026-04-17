@@ -13,9 +13,12 @@ class SceneField {
         game.ctx.fillStyle = 'white'
         Render.fillCanvas(game.canvas, game.ctx)
         game.ctx.fillStyle = 'black'
+
+        Render.strokeRectUI(game.canvas, UI.field.buttonMenu)
     }
 
     pointerDown(game, pos, button) {
+
     }
 
     pointerMove(game, pos) {

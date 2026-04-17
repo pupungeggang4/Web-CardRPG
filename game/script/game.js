@@ -54,7 +54,12 @@ class Game {
     }
 
     pointerMove(event) {
+        let pos = {
+            x: (event.clientX - this.targetRect.left) / this.targetRect.width * this.canvas.width,
+            y: (event.clientY - this.targetRect.top) / this.targetRect.height * this.canvas.height
+        }
 
+        this.scene.pointerMove(this, pos)
     }
 
     pointerUp(event) {
