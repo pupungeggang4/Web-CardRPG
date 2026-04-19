@@ -1,6 +1,6 @@
 class SceneField {
     constructor(game) {
-
+        this.menuWindowField = new MenuWindowField(game)
     }
 
     update(game) {
@@ -14,11 +14,16 @@ class SceneField {
         Render.fillCanvas(game.canvas, game.ctx)
         game.ctx.fillStyle = 'black'
 
-        Render.strokeRectUI(game.canvas, UI.field.buttonMenu)
+        Render.strokeRectUI(game.ctx, UI.field.buttonMenu)
+
+        if (game.menu === true) {
+            this.menuWindowField.render(game)
+        }
     }
 
     pointerDown(game, pos, button) {
-
+        if (button === 0) {
+        }
     }
 
     pointerMove(game, pos) {
@@ -26,6 +31,14 @@ class SceneField {
     }
 
     pointerUp(game, pos, button) {
-
+        if (button === 0) {
+            if (game.menu === false) {
+                if (Util.pointInsideRectUI(pos, UI.field.buttonMenu)) {
+                    game.menu = true
+                }
+            } else {
+                this.menuWindowField.handlePointer(game, pos)
+            }
+        }
     }
 }

@@ -14,10 +14,24 @@ class UI {
     }
 
     static menuField = {
-
+        rect: [320, 200, 640, 320],
+        textPaused: [340, 220],
+        buttonResume: [320, 280, 640, 80],
+        textResume: [340, 300],
+        buttonSave: [320, 360, 640, 80],
+        textSave: [340, 380],
+        buttonExit: [320, 440, 640, 80],
+        textExit: [340, 460],
     }
 
     static menuBattle = {
-
+        rect: [320, 200, 640, 320],
+        textPaused: [340, 220],
+        buttonResume: [320, 280, 640, 80],
+        textResume: [340, 300],
+        buttonSurrender: [320, 360, 640, 80],
+        textSurrender: [340, 380],
+        buttonExit: [320, 440, 640, 80],
+        textExit: [340, 460],
     }
 }
