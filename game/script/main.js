@@ -1,6 +1,5 @@
 window.onload = main
 window.onerror = errorHandle
-window.oncontextmenu = rightClick
 
 let game
 
@@ -13,8 +12,4 @@ function errorHandle(msg, src, line, col, err) {
     if (err != null) {
 
     }
-}
-
-function rightClick() {
-    return false;
 }

@@ -14,6 +14,9 @@ class Game {
         window.addEventListener('resize', (event) => {
             this.targetRect = this.canvas.getBoundingClientRect()
         })
+        this.canvas.addEventListener('contextmenu', (event) => this.rightClick(event), false)
+
+        this.save = Util.loadSaveData()
     }
 
     run() {
@@ -71,5 +74,10 @@ class Game {
 
         this.scene.pointerUp(this, pos, button)
 
+    }
+
+    rightClick(event) {
+        event.preventDefault();
+        return false
     }
 }

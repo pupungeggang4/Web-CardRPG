@@ -13,6 +13,10 @@ class UI {
         buttonMenu: [1180, 20, 80, 80]
     }
 
+    static collection = {
+        buttonBack: [1180, 20, 80, 80]
+    }
+
     static menuField = {
         rect: [320, 200, 640, 320],
         textPaused: [340, 220],

@@ -32,8 +32,14 @@ class SceneTitle {
     }
 
     pointerUp(game, pos, button) {
-        if (Util.pointInsideRectUI(pos, UI.title.buttonStart)) {
-            game.scene = new SceneField(game)
+        if (button === 0) {
+            if (Util.pointInsideRectUI(pos, UI.title.buttonStart)) {
+                game.scene = new SceneField(game)
+            } else if (Util.pointInsideRectUI(pos, UI.title.buttonCollection)) {
+                game.scene = new SceneCollection(game)
+            } else if (Util.pointInsideRectUI(pos, UI.title.buttonErase)) {
+                game.save = Util.eraseSaveData()
+            }
         }
     }
 }
