@@ -14,7 +14,7 @@ class SceneField {
         Render.fillCanvas(game.canvas, game.ctx)
         game.ctx.fillStyle = 'black'
 
-        Render.strokeRectUI(game.ctx, UI.field.buttonMenu)
+        Render.drawImageUI(game.ctx, Img.buttonMenu, UI.field.buttonMenu)
 
         if (game.menu === true) {
             this.menuWindowField.render(game)

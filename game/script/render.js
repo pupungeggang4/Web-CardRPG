@@ -27,4 +27,8 @@ class Render {
     static fillRectUI(ctx, rect) {
         ctx.fillRect(rect[0], rect[1], rect[2], rect[3])
     }
+    
+    static drawImageUI(ctx, img, pos) {
+        ctx.drawImage(img, pos[0], pos[1])
+    }
 }
