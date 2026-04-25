@@ -14,6 +14,9 @@ class SceneField {
         Render.fillCanvas(game.canvas, game.ctx)
         game.ctx.fillStyle = 'black'
 
+        game.field.render(game)
+
+        game.ctx.setTransform(1, 0, 0, 1, 0, 0)
         Render.drawImageUI(game.ctx, Img.buttonMenu, UI.field.buttonMenu)
 
         if (game.menu === true) {

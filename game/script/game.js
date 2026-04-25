@@ -21,6 +21,7 @@ class Game {
 
     run() {
         this.scene = new SceneTitle(this)
+        this.field = new Field(this)
 
         this.frameCurrent = performance.now()
         this.framePrevious = performance.now()
