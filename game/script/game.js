@@ -1,9 +1,5 @@
 class Game {
     constructor() {
-        this.scene = null
-        this.menu = false
-        this.state = ''
-
         this.canvas = document.getElementById('screen')
         this.ctx = this.canvas.getContext('2d')
         this.targetRect = this.canvas.getBoundingClientRect()
@@ -17,12 +13,18 @@ class Game {
         this.canvas.addEventListener('contextmenu', (event) => this.rightClick(event), false)
 
         this.save = Util.loadSaveData()
+
+        this.scene = new SceneTitle(this)
+        this.menu = false
+        this.state = ''
+        this.field = new Field(this)
+
+        this.keyPressed = {
+            'left': false, 'right': false, 'up': false, 'down': false
+        }
     }
 
     run() {
-        this.scene = new SceneTitle(this)
-        this.field = new Field(this)
-
         this.frameCurrent = performance.now()
         this.framePrevious = performance.now()
         this.gameLoop = requestAnimationFrame(() => this.loop())
