@@ -10,6 +10,8 @@ class Game {
         window.addEventListener('resize', (event) => {
             this.targetRect = this.canvas.getBoundingClientRect()
         })
+        window.addEventListener('keydown', (event) => this.keyDown(event), false)
+        window.addEventListener('keyup', (event) => this.keyUp(event), false)
         this.canvas.addEventListener('contextmenu', (event) => this.rightClick(event), false)
 
         this.save = Util.loadSaveData()
@@ -19,6 +21,9 @@ class Game {
         this.state = ''
         this.field = new Field(this)
 
+        this.keyMapping = {
+            'left': 'a', 'right': 'd', 'up': 'w', 'down': 's'
+        }
         this.keyPressed = {
             'left': false, 'right': false, 'up': false, 'down': false
         }
@@ -79,8 +84,26 @@ class Game {
 
     }
 
+    keyDown(event) {
+        let key = event.key
+        for (const k in this.keyPressed) {
+            if (key === this.keyMapping[k]) {
+                this.keyPressed[k] = true
+            }
+        }
+    }
+
+    keyUp(event) {
+        let key = event.key
+        for (const k in this.keyPressed) {
+            if (key === this.keyMapping[k]) {
+                this.keyPressed[k] = false
+            }
+        }
+    }
+
     rightClick(event) {
-        event.preventDefault();
+        event.preventDefault()
         return false
     }
 }

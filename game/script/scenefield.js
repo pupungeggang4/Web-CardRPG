@@ -4,7 +4,11 @@ class SceneField {
     }
 
     update(game) {
-        
+        if (game.menu === false) {
+            if (game.state === '') {
+                game.field.update(game)
+            }
+        }
     }
 
     render(game) {

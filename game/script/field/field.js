@@ -4,6 +4,10 @@ class Field {
         this.camera = new Rect2(0, 0, 1280, 720)
     }
 
+    update(game) {
+        this.player.update(game)
+    }
+
     render(game) {
         let ctx = game.ctx
         this.player.render(game, this.camera)
