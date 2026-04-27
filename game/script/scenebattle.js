@@ -8,7 +8,11 @@ class SceneBattle {
     }
 
     render(game) {
-
+        Render.init(game.ctx)
+        Render.clearCanvas(game.canvas, game.ctx)
+        game.ctx.fillStyle = 'white'
+        Render.fillCanvas(game.canvas, game.ctx)
+        game.ctx.fillStyle = 'black'
     }
 
     pointerDown(game, pos, button) {

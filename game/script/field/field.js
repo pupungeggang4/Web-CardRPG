@@ -2,14 +2,21 @@ class Field {
     constructor(game) {
         this.player = new FieldPlayer(game)
         this.camera = new Rect2(0, 0, 1280, 720)
+        this.entityList = [new FieldEnemy(game)]
     }
 
     update(game) {
         this.player.update(game)
+        for (let i = 0; i < this.entityList.length; i++) {
+            this.entityList[i].update(game)
+        }
     }
 
     render(game) {
         let ctx = game.ctx
-        this.player.render(game, this.camera)
+        for (let i = 0; i < this.entityList.length; i++) {
+            this.entityList[i].render(game)
+        }
+        this.player.render(game)
     }
 }
