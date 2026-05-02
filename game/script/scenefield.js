@@ -21,6 +21,12 @@ class SceneField {
         game.field.render(game)
 
         game.ctx.setTransform(1, 0, 0, 1, 0, 0)
+        Render.strokeRectUI(game.ctx, UI.field.arrow.left)
+        Render.strokeRectUI(game.ctx, UI.field.arrow.right)
+        Render.strokeRectUI(game.ctx, UI.field.arrow.up)
+        Render.strokeRectUI(game.ctx, UI.field.arrow.down)
+
+        Render.strokeRectUI(game.ctx, UI.field.buttonInfo)
         Render.drawImageUI(game.ctx, Img.buttonMenu, UI.field.buttonMenu)
 
         if (game.menu === true) {

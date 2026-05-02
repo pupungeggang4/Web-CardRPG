@@ -10,6 +10,8 @@ class Field {
         for (let i = 0; i < this.entityList.length; i++) {
             this.entityList[i].update(game)
         }
+        this.camera.pos.x = this.player.rect.pos.x
+        this.camera.pos.y = this.player.rect.pos.y
     }
 
     render(game) {

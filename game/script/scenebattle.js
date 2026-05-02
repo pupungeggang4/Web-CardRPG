@@ -13,6 +13,8 @@ class SceneBattle {
         game.ctx.fillStyle = 'white'
         Render.fillCanvas(game.canvas, game.ctx)
         game.ctx.fillStyle = 'black'
+
+        Render.drawImageUI(game.ctx, Img.buttonMenu, UI.battle.buttonMenu)
     }
 
     pointerDown(game, pos, button) {

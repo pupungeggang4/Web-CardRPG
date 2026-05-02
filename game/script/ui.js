@@ -10,7 +10,15 @@ class UI {
     }
 
     static field = {
-        buttonMenu: [1180, 20, 80, 80]
+        buttonMenu: [1180, 20, 80, 80],
+        arrow: {
+            left: [20, 520, 80, 80], right: [220, 520, 80, 80], up: [120, 420, 80, 80], down: [120, 620, 80, 80]
+        },
+        buttonInfo: [1180, 620, 80, 80]
+    }
+
+    static battle = {
+        buttonMenu: [1180, 20, 80, 80],
     }
 
     static collection = {
