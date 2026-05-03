@@ -10,6 +10,7 @@ class FieldEnemy extends FieldEntity {
         
         if (this.rect.pos.distance(player.rect.pos) < 80) {
             game.scene = new SceneBattle(game)
+            game.field.entityList.splice(game.field.entityList.indexOf(this), 1)
         }
     }
 }

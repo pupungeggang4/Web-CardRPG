@@ -17,6 +17,11 @@ class UI {
         buttonInfo: [1180, 620, 80, 80]
     }
 
+    static info = {
+        rect: [160, 40, 960, 640],
+        buttonClose: [1080, 40, 40, 40]
+    }
+
     static battle = {
         buttonMenu: [1180, 20, 80, 80],
     }

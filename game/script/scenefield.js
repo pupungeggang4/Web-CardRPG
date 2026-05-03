@@ -1,6 +1,7 @@
 class SceneField {
     constructor(game) {
         this.menuWindowField = new MenuWindowField(game)
+        this.infoWindow = new InfoWindow(game)
     }
 
     update(game) {
@@ -29,6 +30,10 @@ class SceneField {
         Render.strokeRectUI(game.ctx, UI.field.buttonInfo)
         Render.drawImageUI(game.ctx, Img.buttonMenu, UI.field.buttonMenu)
 
+        if (game.state === 'info') {
+            this.infoWindow.render(game)
+        }
+
         if (game.menu === true) {
             this.menuWindowField.render(game)
         }
@@ -48,6 +53,14 @@ class SceneField {
             if (game.menu === false) {
                 if (Util.pointInsideRectUI(pos, UI.field.buttonMenu)) {
                     game.menu = true
+                }
+
+                if (game.state === '') {
+                    if (Util.pointInsideRectUI(pos, UI.field.buttonInfo)) {
+                        game.state = 'info'
+                    }
+                } else if (game.state === 'info') {
+                    this.infoWindow.handlePointer(game, pos)
                 }
             } else {
                 this.menuWindowField.handlePointer(game, pos)
