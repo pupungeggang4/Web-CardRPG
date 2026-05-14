@@ -1,6 +1,7 @@
 class FieldEntity {
     constructor(game) {
-        this.rect = new Rect2(0, 0, 80, 80)
+        this.rect = new Rect2(0, 0, 64, 64)
+        this.gridPos = new Vec2(0, 0)
         this.sprite = null
     }
 

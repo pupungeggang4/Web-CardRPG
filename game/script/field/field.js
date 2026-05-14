@@ -2,8 +2,7 @@ class Field {
     constructor(game) {
         this.player = new FieldPlayer(game)
         this.camera = new Rect2(0, 0, 1280, 720)
-        this.entityList = [new FieldEnemy(game), new FieldEnemy(game)]
-        this.entityList[1].rect.pos.y = -320
+        this.entityList = [new FieldEnemy(game, 2, 2), new FieldEnemy(game, 2, -2)]
     }
 
     update(game) {

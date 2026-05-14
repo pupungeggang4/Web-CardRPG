@@ -27,11 +27,14 @@ class Game {
         this.keyPressed = {
             'left': false, 'right': false, 'up': false, 'down': false
         }
+        this.pointerPos = {x: 0, y: 0}
+        this.pointerPressed = false
     }
 
     run() {
         this.frameCurrent = performance.now()
         this.framePrevious = performance.now()
+        this.dt = 0
         this.gameLoop = requestAnimationFrame(() => this.loop())
     }
 
@@ -60,6 +63,9 @@ class Game {
             y: (event.clientY - this.targetRect.top) / this.targetRect.height * this.canvas.height
         }
         let button = event.button
+        this.pointerPressed = true
+        this.pointerPos.x = pos.x
+        this.pointerPos.y = pos.y
 
         this.scene.pointerDown(this, pos, button)
     }
@@ -70,6 +76,9 @@ class Game {
             y: (event.clientY - this.targetRect.top) / this.targetRect.height * this.canvas.height
         }
 
+        this.pointerPos.x = pos.x
+        this.pointerPos.y = pos.y
+
         this.scene.pointerMove(this, pos)
     }
 
@@ -79,6 +88,7 @@ class Game {
             y: (event.clientY - this.targetRect.top) / this.targetRect.height * this.canvas.height
         }
         let button = event.button
+        this.pointerPressed = false
 
         this.scene.pointerUp(this, pos, button)
 
