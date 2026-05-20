@@ -95,12 +95,16 @@ class Game {
     }
 
     keyDown(event) {
+        event.preventDefault()
+
         let key = event.key
         for (const k in this.keyPressed) {
             if (key === this.keyMapping[k]) {
                 this.keyPressed[k] = true
             }
         }
+
+        this.scene.keyDown(this, key)
     }
 
     keyUp(event) {

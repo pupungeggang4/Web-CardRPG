@@ -67,4 +67,18 @@ class SceneField {
             }
         }
     }
+
+    keyDown(game, key) {
+        if (game.menu === false) {
+            if (game.state === '') {
+                if (key === 'i') {
+                    game.state = 'info'
+                }
+            } else if (game.state === 'info') {
+                if (key === 'i') {
+                    game.state = ''
+                }
+            }
+        }
+    }
 }

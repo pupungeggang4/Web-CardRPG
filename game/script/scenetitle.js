@@ -1,6 +1,6 @@
 class SceneTitle {
     constructor(game) {
-
+        this.selectedTitle = 0
     }
 
     update(game) {
@@ -40,6 +40,17 @@ class SceneTitle {
             } else if (Util.pointInsideRectUI(pos, UI.title.buttonErase)) {
                 game.save = Util.eraseSaveData()
             }
+        }
+    }
+
+    keyDown(game, key) {
+        if (key === 'Enter') {
+            if (this.selectedTitle === 0)
+                game.scene = new SceneField(game)
+            else if (this.selectedTitle === 1)
+                game.scene = new SceneCollection(game)
+            else if (this.selectedTitle === 2)
+                game.save = Util.eraseSaveData()
         }
     }
 }
