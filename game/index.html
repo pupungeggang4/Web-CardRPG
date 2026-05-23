@@ -2,6 +2,40 @@
 <html>
     <head>
         <title>Card RPG</title>
+        <script type="importmap">
+        {
+            "imports": {
+                "datacard" : "./data/card.js",
+                "datacrystal": "./data/crystal.js",
+                "dataequipment": "./data/equipment.js",
+                "card": "./script/entity/card.js",
+                "unit": "./script/entity/unit.js",
+                "field": "./script/field/field.js",
+                "fieldenemy": "./script/field/fieldenemy.js",
+                "fieldentity": "./script/field/fieldentity.js",
+                "fieldplayer": "./script/field/fieldplayer.js",
+                "fieldsave": "./script/field/fieldsave.js",
+                "fieldplayerhandler": "./script/field/fieldplayer.js",
+                "fieldentityhandler": "./script/field/fieldentityhandler.js",
+                "infowindow": "./script/ui/infowondow.js",
+                "menuwindowbattle": "./script/ui/menuwindowbattle.js",
+                "menuwindowfield": "./script/ui/menuwindowfield.js",
+
+                "asset": "./script/asset.js",
+                "gamevar": "./script/gamevar.js",
+                "gamehandler": "./script/gamehandler.js",
+                "primitive": "./script/primitive.js",
+                "render": "./script/render.js",
+                "scene": "./script/scene.js",
+                "scenebattle": "./script/scenebattle.js",
+                "scenecollection": "./script/scenecollection.js",
+                "scenefield": "./script/scenefield.js",
+                "scenetitle": "./script/scenetitle.js",
+                "ui": "./script/ui/ui.js",
+                "util": "./script/util.js"
+            }
+        }
+        </script>
         <style>
             @font-face {
                 font-family: neodgm;
@@ -28,38 +62,6 @@
     </head>
     <body>
         <canvas id="screen" width="1280" height="720"></canvas>
-        <script src="data/card.js"></script>
-        <script src="data/crystal.js"></script>
-        <script src="data/equipment.js"></script>
-
-        <script src="script/asset.js"></script>
-        <script src="script/ui.js"></script>
-
-        <script src="script/primitive.js"></script>
-
-        <script src="script/ui/infowindow.js"></script>
-        <script src="script/ui/menuwindowfield.js"></script>
-        <script src="script/ui/menuwindowbattle.js"></script>
-
-        <script src="script/field/field.js"></script>
-        <script src="script/field/fieldentity.js"></script>
-        <script src="script/field/fieldplayer.js"></script>
-        <script src="script/field/fieldenemy.js"></script>
-        <script src="script/field/fieldsave.js"></script>
-
-        <script src="script/entity/entity.js"></script>
-        <script src="script/entity/card.js"></script>
-        <script src="script/entity/unit.js"></script>
-
-        <script src="script/render.js"></script>
-        <script src="script/util.js"></script>
-        <script src="script/game.js"></script>
-
-        <script src="script/scenetitle.js"></script>
-        <script src="script/scenefield.js"></script>
-        <script src="script/scenebattle.js"></script>
-        <script src="script/scenecollection.js"></script>
-
-        <script src="script/main.js"></script>
+        <script type="module" src="script/main.js"></script>
     </body>
 </html>

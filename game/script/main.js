@@ -1,7 +1,8 @@
+import {GameHandler} from "gamehandler"
+import {GameVar} from "gamevar"
+
 window.onload = main
 window.onerror = errorHandle
-
-let game
 
 async function main() {
     try {
@@ -9,8 +10,9 @@ async function main() {
             AssetLoader.loadImage(),
             AssetLoader.loadAudio()
         ])
-        game = new Game()
-        game.run()
+        gameVar = new GameVar()
+        gameHandler = new GameHandler()
+        gameHandler.run(gameVar)
     } catch (error) {
         console.log(error);
     }
