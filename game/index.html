@@ -2,40 +2,6 @@
 <html>
     <head>
         <title>Card RPG</title>
-        <script type="importmap">
-        {
-            "imports": {
-                "datacard" : "./data/card.js",
-                "datacrystal": "./data/crystal.js",
-                "dataequipment": "./data/equipment.js",
-                "card": "./script/entity/card.js",
-                "unit": "./script/entity/unit.js",
-                "field": "./script/field/field.js",
-                "fieldenemy": "./script/field/fieldenemy.js",
-                "fieldentity": "./script/field/fieldentity.js",
-                "fieldplayer": "./script/field/fieldplayer.js",
-                "fieldsave": "./script/field/fieldsave.js",
-                "fieldplayerhandler": "./script/field/fieldplayer.js",
-                "fieldentityhandler": "./script/field/fieldentityhandler.js",
-                "infowindow": "./script/ui/infowondow.js",
-                "menuwindowbattle": "./script/ui/menuwindowbattle.js",
-                "menuwindowfield": "./script/ui/menuwindowfield.js",
-
-                "asset": "./script/asset.js",
-                "gamevar": "./script/gamevar.js",
-                "gamehandler": "./script/gamehandler.js",
-                "primitive": "./script/primitive.js",
-                "render": "./script/render.js",
-                "scene": "./script/scene.js",
-                "scenebattle": "./script/scenebattle.js",
-                "scenecollection": "./script/scenecollection.js",
-                "scenefield": "./script/scenefield.js",
-                "scenetitle": "./script/scenetitle.js",
-                "ui": "./script/ui/ui.js",
-                "util": "./script/util.js"
-            }
-        }
-        </script>
         <style>
             @font-face {
                 font-family: neodgm;
@@ -59,6 +25,47 @@
                 max-height: 96%;
             }
         </style>
+        <script type="importmap">
+        {
+            "imports": {
+                "datacard" : "./data/card.js",
+                "datacrystal": "./data/crystal.js",
+                "dataequipment": "./data/equipment.js",
+                
+                "card": "./script/entity/card.js",
+                "cardhandler": "./script/entity/cardhandler.js",
+                "unit": "./script/entity/unit.js",
+                "unithandler": "./script/entity/unithandler.js",
+
+                "field": "./script/field/field.js",
+                "fieldhandler": "./script/field/fieldhandler.js",
+                "fieldenemy": "./script/field/fieldenemy.js",
+                "fieldentity": "./script/field/fieldentity.js",
+                "fieldplayer": "./script/field/fieldplayer.js",
+                "fieldsave": "./script/field/fieldsave.js",
+                "fieldplayerhandler": "./script/field/fieldplayerhandler.js",
+                "fieldentityhandler": "./script/field/fieldentityhandler.js",
+
+                "ui": "./script/ui/ui.js",
+                "infowindow": "./script/ui/infowindow.js",
+                "menuwindowbattle": "./script/ui/menuwindowbattle.js",
+                "menuwindowfield": "./script/ui/menuwindowfield.js",
+
+                "asset": "./script/asset.js",
+                "gamevar": "./script/gamevar.js",
+                "gamehandler": "./script/gamehandler.js",
+                "primitive": "./script/primitive.js",
+                "render": "./script/render.js",
+
+                "scene": "./script/scene.js",
+                "scenebattle": "./script/scenebattle.js",
+                "scenecollection": "./script/scenecollection.js",
+                "scenefield": "./script/scenefield.js",
+                "scenetitle": "./script/scenetitle.js",
+                "util": "./script/util.js"
+            }
+        }
+        </script>
     </head>
     <body>
         <canvas id="screen" width="1280" height="720"></canvas>

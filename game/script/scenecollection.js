@@ -1,4 +1,4 @@
-class SceneCollection {
+export class SceneCollection {
     constructor(game) {
 
     }

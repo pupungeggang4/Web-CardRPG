@@ -1,10 +1,16 @@
-class MenuWindowField {
-    constructor(game) {
+import {UI} from 'ui'
+import {GameVar} from 'gamevar'
+
+import {Render} from 'render'
+import {Util} from 'util'
+
+export class MenuWindowField {
+    constructor() {
 
     }
 
-    render(game) {
-        let ctx = game.ctx
+    render(gameVar) {
+        let ctx = gameVar.ctx
         ctx.fillStyle = 'white'
         Render.fillRectUI(ctx, UI.menuField.rect)
         Render.strokeRectUI(ctx, UI.menuField.rect)
@@ -19,14 +25,14 @@ class MenuWindowField {
         Render.fillTextUI(ctx, "Exit to Title", UI.menuField.textExit)
     }
 
-    handlePointer(game, pos) {
+    handlePointer(gameVar, pos) {
         if (Util.pointInsideRectUI(pos, UI.menuField.buttonResume)) {
-            game.menu = false
+            gameVar.menu = false
         } else if (Util.pointInsideRectUI(pos, UI.menuField.buttonSave)) {
-            game.menu = false
+            gameVar.menu = false
         } else if (Util.pointInsideRectUI(pos, UI.menuField.buttonExit)) {
-            game.menu = false
-            game.scene = new SceneTitle(game)
+            gameVar.menu = false
+            gameVar.scene = 'title'
         }
     }
 }

@@ -1,47 +1,58 @@
-class SceneBattle {
-    constructor(game) {
-        this.menuWindowBattle = new MenuWindowBattle(game)
+import {Img, Aud} from 'asset'
+import {UI} from 'ui'
+import {GameVar} from 'gamevar'
+
+import {Util} from 'util'
+import {Render} from 'render'
+
+import {MenuWindowBattle} from 'menuwindowbattle'
+import {Scene} from 'scene'
+
+export class SceneBattle {
+    static menuWindowBattle = new MenuWindowBattle()
+
+    static update(gameVar) {
+
     }
 
-    update(game) {
+    static render(gameVar) {
+        let canvas = gameVar.canvas
+        let ctx = gameVar.ctx
 
-    }
+        Render.init(ctx)
+        Render.clearCanvas(canvas, ctx)
+        gameVar.ctx.fillStyle = 'white'
+        Render.fillCanvas(canvas, ctx)
+        gameVar.ctx.fillStyle = 'black'
 
-    render(game) {
-        Render.init(game.ctx)
-        Render.clearCanvas(game.canvas, game.ctx)
-        game.ctx.fillStyle = 'white'
-        Render.fillCanvas(game.canvas, game.ctx)
-        game.ctx.fillStyle = 'black'
+        Render.drawImageUI(ctx, Img.buttonMenu, UI.battle.buttonMenu)
 
-        Render.drawImageUI(game.ctx, Img.buttonMenu, UI.battle.buttonMenu)
-
-        if (game.menu === true) {
-            this.menuWindowBattle.render(game)
+        if (gameVar.menu === true) {
+            this.menuWindowBattle.render(gameVar)
         }
     }
 
-    pointerDown(game, pos, button) {
+    static pointerDown(gameVar, pos, button) {
         if (button === 0) {
-            if (game.menu === false) {
+            if (gameVar.menu === false) {
                 if (Util.pointInsideRectUI(pos, UI.battle.buttonMenu)) {
-                    game.menu = true
+                    gameVar.menu = true
                 }
-            } else if (game.menu === true) {
+            } else if (gameVar.menu === true) {
                 if (Util.pointInsideRectUI(pos, UI.battle.buttonMenu)) {
-                    game.menu = false
+                    gameVar.menu = false
                 }
 
-                this.menuWindowBattle.handlePointer(game, pos)
+                this.menuWindowBattle.handlePointer(gameVar, pos)
             }
         }
     }
 
-    pointerMove(game, pos) {
+    static pointerMove(gameVar, pos) {
 
     }
 
-    pointerUp(game, pos, button) {
+    static pointerUp(gameVar, pos, button) {
 
     }
 }

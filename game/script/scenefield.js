@@ -1,82 +1,96 @@
-class SceneField {
-    constructor(game) {
-        this.menuWindowField = new MenuWindowField(game)
-        this.infoWindow = new InfoWindow(game)
-    }
+import {Img, Aud} from 'asset'
+import {UI} from 'ui'
+import {GameVar} from 'gamevar'
 
-    update(game) {
-        if (game.menu === false) {
-            if (game.state === '') {
-                game.field.update(game)
+import {FieldHandler} from 'fieldhandler'
+
+import {Util} from 'util'
+import {Render} from 'render'
+
+import {InfoWindow} from 'infowindow'
+import {MenuWindowField} from 'menuwindowfield'
+import {Scene} from 'scene'
+
+export class SceneField extends Scene {
+    static infoWindow = new InfoWindow()
+    static menuWindowField = new MenuWindowField()
+
+    static update(gameVar) {
+        if (gameVar.menu === false) {
+            if (gameVar.state === '') {
+                FieldHandler.update(gameVar, gameVar.field)
             }
         }
     }
 
-    render(game) {
-        Render.init(game.ctx)
-        Render.clearCanvas(game.canvas, game.ctx)
-        game.ctx.fillStyle = 'white'
-        Render.fillCanvas(game.canvas, game.ctx)
-        game.ctx.fillStyle = 'black'
+    static render(gameVar) {
+        let canvas = gameVar.canvas
+        let ctx = gameVar.ctx
 
-        game.field.render(game)
+        Render.init(ctx)
+        Render.clearCanvas(canvas, ctx)
+        ctx.fillStyle = 'white'
+        Render.fillCanvas(canvas, ctx)
+        ctx.fillStyle = 'black'
 
-        game.ctx.setTransform(1, 0, 0, 1, 0, 0)
-        Render.strokeRectUI(game.ctx, UI.field.arrow.left)
-        Render.strokeRectUI(game.ctx, UI.field.arrow.right)
-        Render.strokeRectUI(game.ctx, UI.field.arrow.up)
-        Render.strokeRectUI(game.ctx, UI.field.arrow.down)
+        FieldHandler.render(gameVar, gameVar.field)
 
-        Render.strokeRectUI(game.ctx, UI.field.buttonInfo)
-        Render.drawImageUI(game.ctx, Img.buttonMenu, UI.field.buttonMenu)
+        ctx.setTransform(1, 0, 0, 1, 0, 0)
+        Render.strokeRectUI(ctx, UI.field.arrow.left)
+        Render.strokeRectUI(ctx, UI.field.arrow.right)
+        Render.strokeRectUI(ctx, UI.field.arrow.up)
+        Render.strokeRectUI(ctx, UI.field.arrow.down)
 
-        if (game.state === 'info') {
-            this.infoWindow.render(game)
+        Render.strokeRectUI(ctx, UI.field.buttonInfo)
+        Render.drawImageUI(ctx, Img.buttonMenu, UI.field.buttonMenu)
+
+        if (gameVar.state === 'info') {
+            this.infoWindow.render(gameVar)
         }
 
-        if (game.menu === true) {
-            this.menuWindowField.render(game)
+        if (gameVar.menu === true) {
+            this.menuWindowField.render(gameVar)
         }
     }
 
-    pointerDown(game, pos, button) {
+    static pointerDown(gameVar, pos, button) {
         if (button === 0) {
         }
     }
 
-    pointerMove(game, pos) {
+    static pointerMove(gameVar, pos) {
 
     }
 
-    pointerUp(game, pos, button) {
+    static pointerUp(gameVar, pos, button) {
         if (button === 0) {
-            if (game.menu === false) {
+            if (gameVar.menu === false) {
                 if (Util.pointInsideRectUI(pos, UI.field.buttonMenu)) {
-                    game.menu = true
+                    gameVar.menu = true
                 }
 
-                if (game.state === '') {
+                if (gameVar.state === '') {
                     if (Util.pointInsideRectUI(pos, UI.field.buttonInfo)) {
-                        game.state = 'info'
+                        gameVar.state = 'info'
                     }
-                } else if (game.state === 'info') {
-                    this.infoWindow.handlePointer(game, pos)
+                } else if (gameVar.state === 'info') {
+                    this.infoWindow.handlePointer(gameVar, pos)
                 }
             } else {
-                this.menuWindowField.handlePointer(game, pos)
+                this.menuWindowField.handlePointer(gameVar, pos)
             }
         }
     }
 
-    keyDown(game, key) {
-        if (game.menu === false) {
-            if (game.state === '') {
+    static keyDown(gameVar, key) {
+        if (gameVar.menu === false) {
+            if (gameVar.state === '') {
                 if (key === 'i') {
-                    game.state = 'info'
+                    gameVar.state = 'info'
                 }
-            } else if (game.state === 'info') {
+            } else if (gameVar.state === 'info') {
                 if (key === 'i') {
-                    game.state = ''
+                    gameVar.state = ''
                 }
             }
         }

@@ -1,10 +1,12 @@
-class MenuWindowBattle {
-    constructor(game) {
+import {UI} from 'ui'
+import {GameVar} from 'gamevar'
 
-    }
+import {Render} from 'render'
+import {Util} from 'util'
 
-    render(game) {
-        let ctx = game.ctx
+export class MenuWindowBattle {
+    render(gameVar) {
+        let ctx = gameVar.ctx
         ctx.fillStyle = 'white'
         Render.fillRectUI(ctx, UI.menuBattle.rect)
         Render.strokeRectUI(ctx, UI.menuBattle.rect)
@@ -19,15 +21,15 @@ class MenuWindowBattle {
         Render.fillTextUI(ctx, "Exit to Title", UI.menuBattle.textExit)
     }
 
-    handlePointer(game, pos) {
+    handlePointer(gameVar, pos) {
         if (Util.pointInsideRectUI(pos, UI.menuBattle.buttonResume)) {
-            game.menu = false
+            gameVar.menu = false
         } else if (Util.pointInsideRectUI(pos, UI.menuBattle.buttonSurrender)) {
-            game.menu = false
-            game.scene = new SceneField(game)
+            gameVar.menu = false
+            gameVar.scene = 'field'
         } else if (Util.pointInsideRectUI(pos, UI.menuBattle.buttonExit)) {
-            game.menu = false
-            game.scene = new SceneTitle(game)
+            gameVar.menu = false
+            gameVar.scene = 'title'
         }
     }
 }

@@ -1,10 +1,14 @@
+import {Img, Aud, AssetLoader} from 'asset'
+
 import {GameHandler} from "gamehandler"
 import {GameVar} from "gamevar"
 
 window.onload = main
-window.onerror = errorHandle
 
 async function main() {
+    let gameVar
+    let gameHandler
+
     try {
         const [image, audio] = await Promise.all([
             AssetLoader.loadImage(),
@@ -14,12 +18,9 @@ async function main() {
         gameHandler = new GameHandler()
         gameHandler.run(gameVar)
     } catch (error) {
-        console.log(error);
-    }
-}
-
-function errorHandle(msg, src, line, col, err) {
-    if (err != null) {
-
+        console.log(error)
+        if (gameVar.gameLoop) {
+            cancelAnimationFrame(gameVar.gameLoop)
+        }
     }
 }

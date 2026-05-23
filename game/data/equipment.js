@@ -1,4 +1,4 @@
-class DataEquipment {
+export class DataEquipment {
     static data = {
 
     }

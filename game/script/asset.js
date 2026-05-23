@@ -1,12 +1,12 @@
-class Img {
+export class Img {
     static loadPair = [['buttonMenu', 'asset/image/button_menu.png']]
 }
 
-class Aud {
+export class Aud {
     static loadPair = []
 }
 
-class AssetLoader {
+export class AssetLoader {
     static loadImage() {
         const promises = Img.loadPair.map(pair => {
             return new Promise((resolve, reject) => {

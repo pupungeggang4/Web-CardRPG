@@ -1,4 +1,4 @@
-class DataCrystal {
+export class DataCrystal {
     static data = {
 
     }

@@ -1,119 +1,115 @@
-class Game {
+import {GameVar} from 'gamevar'
+import {Util} from 'util'
+import {Scene} from 'scene'
+import {SceneTitle} from 'scenetitle'
+import {SceneCollection} from 'scenecollection'
+import {SceneField} from 'scenefield'
+import {SceneBattle} from 'scenebattle'
+
+export class GameHandler {
     constructor() {
-        this.canvas = document.getElementById('screen')
-        this.ctx = this.canvas.getContext('2d')
-        this.targetRect = this.canvas.getBoundingClientRect()
+        this.scene = {
+            'title': SceneTitle, 'collection': SceneCollection, 'field': SceneField, 'battle': SceneBattle
+        }
+    }
 
-        window.addEventListener('pointerdown', (event) => this.pointerDown(event), false)
-        window.addEventListener('pointermove', (event) => this.pointerMove(event), false)
-        window.addEventListener('pointerup', (event) => this.pointerUp(event), false)
+    run(gameVar) {
+        window.addEventListener('pointerdown', (event) => this.pointerDown(event, gameVar), false)
+        window.addEventListener('pointermove', (event) => this.pointerMove(event, gameVar), false)
+        window.addEventListener('pointerup', (event) => this.pointerUp(event, gameVar), false)
         window.addEventListener('resize', (event) => {
-            this.targetRect = this.canvas.getBoundingClientRect()
+            gameVar.targetRect = gameVar.canvas.getBoundingClientRect()
         })
-        window.addEventListener('keydown', (event) => this.keyDown(event), false)
-        window.addEventListener('keyup', (event) => this.keyUp(event), false)
-        this.canvas.addEventListener('contextmenu', (event) => this.rightClick(event), false)
+        window.addEventListener('keydown', (event) => this.keyDown(event, gameVar), false)
+        window.addEventListener('keyup', (event) => this.keyUp(event, gameVar), false)
+        gameVar.canvas.addEventListener('contextmenu', (event) => this.rightClick(event, gameVar), false)
 
-        this.save = Util.loadSaveData()
+        gameVar.save = Util.loadSaveData(gameVar)
 
-        this.scene = new SceneTitle(this)
-        this.menu = false
-        this.state = ''
-        this.field = new Field(this)
-
-        this.keyMapping = {
-            'left': 'a', 'right': 'd', 'up': 'w', 'down': 's'
-        }
-        this.keyPressed = {
-            'left': false, 'right': false, 'up': false, 'down': false
-        }
-        this.pointerPos = {x: 0, y: 0}
-        this.pointerPressed = false
+        gameVar.frameCurrent = performance.now()
+        gameVar.framePrevious = performance.now()
+        gameVar.dt = 0
+        gameVar.gameLoop = requestAnimationFrame(() => this.loop(gameVar))
     }
 
-    run() {
-        this.frameCurrent = performance.now()
-        this.framePrevious = performance.now()
-        this.dt = 0
-        this.gameLoop = requestAnimationFrame(() => this.loop())
-    }
+    loop(gameVar) {
+        gameVar.frameCurrent = performance.now()
+        gameVar.dt = (gameVar.frameCurrent - gameVar.framePrevious) / 1000
+        gameVar.framePrevious = gameVar.frameCurrent
 
-    loop() {
-        this.frameCurrent = performance.now()
-        this.dt = (this.frameCurrent - this.framePrevious) / 1000
-        this.framePrevious = this.frameCurrent
-
-        this.update()
-        this.render()
+        this.update(gameVar)
+        this.render(gameVar)
         
-        this.gameLoop = requestAnimationFrame(() => this.loop())
+        gameVar.gameLoop = requestAnimationFrame(() => this.loop(gameVar))
     }
 
-    update() {
-        this.scene.update(this)
+    update(gameVar) {
+        this.scene[gameVar.scene].update(gameVar)
     }
 
-    render() {
-        this.scene.render(this)
+    render(gameVar) {
+        this.scene[gameVar.scene].render(gameVar)
     }
 
-    pointerDown(event) {
+    pointerDown(event, gameVar) {
         let pos = {
-            x: (event.clientX - this.targetRect.left) / this.targetRect.width * this.canvas.width,
-            y: (event.clientY - this.targetRect.top) / this.targetRect.height * this.canvas.height
+            x: (event.clientX - gameVar.targetRect.left) / gameVar.targetRect.width * gameVar.canvas.width,
+            y: (event.clientY - gameVar.targetRect.top) / gameVar.targetRect.height * gameVar.canvas.height
         }
         let button = event.button
-        this.pointerPressed = true
-        this.pointerPos.x = pos.x
-        this.pointerPos.y = pos.y
+        gameVar.pointerPressed = true
+        gameVar.pointerPos.x = pos.x
+        gameVar.pointerPos.y = pos.y
 
-        this.scene.pointerDown(this, pos, button)
+        this.scene[gameVar.scene].pointerDown(gameVar, pos, button)
     }
 
-    pointerMove(event) {
+    pointerMove(event, gameVar) {
         let pos = {
-            x: (event.clientX - this.targetRect.left) / this.targetRect.width * this.canvas.width,
-            y: (event.clientY - this.targetRect.top) / this.targetRect.height * this.canvas.height
+            x: (event.clientX - gameVar.targetRect.left) / gameVar.targetRect.width * gameVar.canvas.width,
+            y: (event.clientY - gameVar.targetRect.top) / gameVar.targetRect.height * gameVar.canvas.height
         }
 
-        this.pointerPos.x = pos.x
-        this.pointerPos.y = pos.y
+        gameVar.pointerPos.x = pos.x
+        gameVar.pointerPos.y = pos.y
 
-        this.scene.pointerMove(this, pos)
+        this.scene[gameVar.scene].pointerMove(gameVar, pos)
     }
 
-    pointerUp(event) {
+    pointerUp(event, gameVar) {
         let pos = {
-            x: (event.clientX - this.targetRect.left) / this.targetRect.width * this.canvas.width,
-            y: (event.clientY - this.targetRect.top) / this.targetRect.height * this.canvas.height
+            x: (event.clientX - gameVar.targetRect.left) / gameVar.targetRect.width * gameVar.canvas.width,
+            y: (event.clientY - gameVar.targetRect.top) / gameVar.targetRect.height * gameVar.canvas.height
         }
         let button = event.button
-        this.pointerPressed = false
+        gameVar.pointerPressed = false
 
-        this.scene.pointerUp(this, pos, button)
+        this.scene[gameVar.scene].pointerUp(gameVar, pos, button)
 
     }
 
-    keyDown(event) {
+    keyDown(event, gameVar) {
         event.preventDefault()
 
         let key = event.key
-        for (const k in this.keyPressed) {
-            if (key === this.keyMapping[k]) {
-                this.keyPressed[k] = true
+        for (const k in gameVar.keyPressed) {
+            if (key === gameVar.keyMapping[k]) {
+                gameVar.keyPressed[k] = true
             }
         }
 
-        this.scene.keyDown(this, key)
+        this.scene[gameVar.scene].keyDown(gameVar, key)
     }
 
-    keyUp(event) {
+    keyUp(event, gameVar) {
         let key = event.key
-        for (const k in this.keyPressed) {
-            if (key === this.keyMapping[k]) {
-                this.keyPressed[k] = false
+        for (const k in gameVar.keyPressed) {
+            if (key === gameVar.keyMapping[k]) {
+                gameVar.keyPressed[k] = false
             }
         }
+
+        this.scene[gameVar.scene].keyUp(gameVar, key)
     }
 
     rightClick(event) {

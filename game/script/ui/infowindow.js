@@ -1,10 +1,16 @@
-class InfoWindow {
-    constructor(game) {
+import {UI} from 'ui'
+import {GameVar} from 'gamevar'
+
+import {Render} from 'render'
+import {Util} from 'util'
+
+export class InfoWindow {
+    constructor() {
 
     }
 
-    render(game) {
-        let ctx = game.ctx
+    render(gameVar) {
+        let ctx = gameVar.ctx
         ctx.fillStyle = 'white'
         Render.fillRectUI(ctx, UI.info.rect)
         Render.strokeRectUI(ctx, UI.info.rect)
@@ -13,9 +19,9 @@ class InfoWindow {
         Render.strokeRectUI(ctx, UI.info.buttonClose)
     }
 
-    handlePointer(game, pos) {
+    handlePointer(gameVar, pos) {
         if (Util.pointInsideRectUI(pos, UI.info.buttonClose)) {
-            game.state = ''
+            gameVar.state = ''
         }
     }
 }
