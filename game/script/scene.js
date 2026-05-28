@@ -1,29 +1,33 @@
 export class Scene {
-    static update(gameVar) {
+    constructor() {
 
     }
 
-    static render(gameVar) {
+    update(gameVar) {
 
     }
 
-    static pointerDown(gameVar, pos, button) {
+    render(gameVar) {
 
     }
 
-    static pointerMove(gameVar, pos) {
+    pointerDown(gameVar, pos, button) {
 
     }
 
-    static pointerUp(gameVar, pos, button) {
+    pointerMove(gameVar, pos) {
 
     }
 
-    static keyDown(gameVar, key)  {
+    pointerUp(gameVar, pos, button) {
 
     }
 
-    static keyUp(gameVar, key) {
+    keyDown(gameVar, key)  {
+
+    }
+
+    keyUp(gameVar, key) {
 
     }
 }

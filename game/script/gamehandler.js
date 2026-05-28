@@ -9,7 +9,7 @@ import {SceneBattle} from 'scenebattle'
 export class GameHandler {
     constructor() {
         this.scene = {
-            'title': SceneTitle, 'collection': SceneCollection, 'field': SceneField, 'battle': SceneBattle
+            'title': new SceneTitle(), 'collection': new SceneCollection(), 'field': new SceneField(), 'battle': new SceneBattle()
         }
     }
 

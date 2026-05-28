@@ -12,10 +12,13 @@ import {MenuWindowField} from 'menuwindowfield'
 import {Scene} from 'scene'
 
 export class SceneField extends Scene {
-    static infoWindow = new InfoWindow()
-    static menuWindowField = new MenuWindowField()
+    constructor() {
+        super()
+        this.infoWindow = new InfoWindow()
+        this.menuWindowField = new MenuWindowField()
+    }
 
-    static update(gameVar) {
+    update(gameVar) {
         if (gameVar.menu === false) {
             if (gameVar.state === '') {
                 FieldHandler.update(gameVar, gameVar.field)
@@ -23,7 +26,7 @@ export class SceneField extends Scene {
         }
     }
 
-    static render(gameVar) {
+    render(gameVar) {
         let canvas = gameVar.canvas
         let ctx = gameVar.ctx
 
@@ -53,16 +56,16 @@ export class SceneField extends Scene {
         }
     }
 
-    static pointerDown(gameVar, pos, button) {
+    pointerDown(gameVar, pos, button) {
         if (button === 0) {
         }
     }
 
-    static pointerMove(gameVar, pos) {
+    pointerMove(gameVar, pos) {
 
     }
 
-    static pointerUp(gameVar, pos, button) {
+    pointerUp(gameVar, pos, button) {
         if (button === 0) {
             if (gameVar.menu === false) {
                 if (Util.pointInsideRectUI(pos, UI.field.buttonMenu)) {
@@ -82,7 +85,7 @@ export class SceneField extends Scene {
         }
     }
 
-    static keyDown(gameVar, key) {
+    keyDown(gameVar, key) {
         if (gameVar.menu === false) {
             if (gameVar.state === '') {
                 if (key === 'i') {

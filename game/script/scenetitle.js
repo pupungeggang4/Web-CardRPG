@@ -7,11 +7,11 @@ import {Render} from 'render'
 import {Scene} from 'scene'
 
 export class SceneTitle extends Scene {
-    static update(gameVar) {
+    update(gameVar) {
         
     }
 
-    static render(gameVar) {
+    render(gameVar) {
         let canvas = gameVar.canvas
         let ctx = gameVar.ctx
         
@@ -32,15 +32,15 @@ export class SceneTitle extends Scene {
         Render.strokeRectUI(ctx, UI.title.arrow[gameVar.selectedTitle])
     }
 
-    static pointerDown(gameVar, pos, button) {
+    pointerDown(gameVar, pos, button) {
 
     }
 
-    static pointerMove(gameVar, pos) {
+    pointerMove(gameVar, pos) {
 
     }
 
-    static pointerUp(gameVar, pos, button) {
+    pointerUp(gameVar, pos, button) {
         if (button === 0) {
             if (Util.pointInsideRectUI(pos, UI.title.buttonStart)) {
                 gameVar.scene = 'field'
@@ -52,7 +52,7 @@ export class SceneTitle extends Scene {
         }
     }
 
-    static keyDown(gameVar, key) {
+    keyDown(gameVar, key) {
         if (key === 'w' || key === 'ArrowUp') {
             gameVar.selectedTitle = (gameVar.selectedTitle + 2) % 3
         } else if (key === 's' || key === 'ArrowDown') {

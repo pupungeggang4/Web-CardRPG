@@ -1,5 +1,5 @@
 export class SceneCollection {
-    constructor(game) {
+    constructor() {
 
     }
 

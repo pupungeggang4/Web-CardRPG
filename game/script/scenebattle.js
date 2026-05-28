@@ -9,13 +9,15 @@ import {MenuWindowBattle} from 'menuwindowbattle'
 import {Scene} from 'scene'
 
 export class SceneBattle {
-    static menuWindowBattle = new MenuWindowBattle()
+    constructor() {
+        this.menuWindowBattle = new MenuWindowBattle()
+    }
 
-    static update(gameVar) {
+    update(gameVar) {
 
     }
 
-    static render(gameVar) {
+    render(gameVar) {
         let canvas = gameVar.canvas
         let ctx = gameVar.ctx
 
@@ -32,7 +34,7 @@ export class SceneBattle {
         }
     }
 
-    static pointerDown(gameVar, pos, button) {
+    pointerDown(gameVar, pos, button) {
         if (button === 0) {
             if (gameVar.menu === false) {
                 if (Util.pointInsideRectUI(pos, UI.battle.buttonMenu)) {
@@ -48,11 +50,11 @@ export class SceneBattle {
         }
     }
 
-    static pointerMove(gameVar, pos) {
+    pointerMove(gameVar, pos) {
 
     }
 
-    static pointerUp(gameVar, pos, button) {
+    pointerUp(gameVar, pos, button) {
 
     }
 }
