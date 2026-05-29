@@ -8,8 +8,9 @@ import {Render} from 'render'
 import {MenuWindowBattle} from 'menuwindowbattle'
 import {Scene} from 'scene'
 
-export class SceneBattle {
+export class SceneBattle extends Scene {
     constructor() {
+        super()
         this.menuWindowBattle = new MenuWindowBattle()
     }
 

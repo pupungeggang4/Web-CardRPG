@@ -1,35 +1,43 @@
-export class SceneCollection {
+import {UI} from 'ui'
+import {GameVar} from 'gamevar'
+
+import {Util} from 'util'
+import {Render} from 'render'
+
+import {Scene} from 'scene'
+
+export class SceneCollection extends Scene {
     constructor() {
+        super()
+    }
+
+    update(gameVar) {
 
     }
 
-    update(game) {
+    render(gameVar) {
+        let canvas = gameVar.canvas
+        let ctx = gameVar.ctx
 
+        Render.init(ctx)
+        Render.clearCanvas(canvas, ctx)
+
+        Render.strokeRectUI(ctx, UI.collection.buttonBack)
     }
 
-    render(game) {
-        Render.init(game.ctx)
-        Render.clearCanvas(game.canvas, game.ctx)
-        game.ctx.fillStyle = 'white'
-        Render.fillCanvas(game.canvas, game.ctx)
-        game.ctx.fillStyle = 'black'
-
-        Render.strokeRectUI(game.ctx, UI.collection.buttonBack)
-    }
-
-    pointerUp(game, pos, button) {
+    pointerUp(gameVar, pos, button) {
         if (button === 0) {
             if (Util.pointInsideRectUI(pos, UI.collection.buttonBack)) {
-                game.scene = new SceneTitle(game)
+                gameVar.scene = 'title'
             }
         }
     }
 
-    pointerMove(game, pos) {
+    pointerMove(gameVar, pos) {
 
     }
 
-    pointerDown(game, pos, button) {
+    pointerDown(gameVar, pos, button) {
 
     }
 }

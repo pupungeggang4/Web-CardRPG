@@ -7,6 +7,10 @@ import {Render} from 'render'
 import {Scene} from 'scene'
 
 export class SceneTitle extends Scene {
+    constructor() {
+        super()
+    }
+
     update(gameVar) {
         
     }
@@ -17,9 +21,6 @@ export class SceneTitle extends Scene {
         
         Render.init(ctx)
         Render.clearCanvas(canvas, ctx)
-        gameVar.ctx.fillStyle = 'white'
-        Render.fillCanvas(canvas, ctx)
-        gameVar.ctx.fillStyle = 'black'
 
         Render.fillTextUI(ctx, "Card RPG", UI.title.textTitle)
         Render.strokeRectUI(ctx, UI.title.buttonStart)

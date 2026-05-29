@@ -32,9 +32,6 @@ export class SceneField extends Scene {
 
         Render.init(ctx)
         Render.clearCanvas(canvas, ctx)
-        ctx.fillStyle = 'white'
-        Render.fillCanvas(canvas, ctx)
-        ctx.fillStyle = 'black'
 
         FieldHandler.render(gameVar, gameVar.field)
 

@@ -1,10 +1,9 @@
 export class Render {
     static clearCanvas(canvas, ctx) {
+        ctx.fillStyle = 'white'
         ctx.clearRect(0, 0, canvas.width, canvas.height)
-    }
-
-    static fillCanvas(canvas, ctx) {
         ctx.fillRect(0, 0, canvas.width, canvas.height)
+        ctx.fillStyle = 'black'
     }
 
     static init(ctx) {
