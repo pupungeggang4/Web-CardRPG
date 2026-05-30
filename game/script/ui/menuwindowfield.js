@@ -23,6 +23,8 @@ export class MenuWindowField {
         Render.fillTextUI(ctx, "Save Data", UI.menuField.textSave)
         Render.strokeRectUI(ctx, UI.menuField.buttonExit)
         Render.fillTextUI(ctx, "Exit to Title", UI.menuField.textExit)
+
+        Render.strokeRectUI(ctx, UI.menuField.arrow[gameVar.selectedMenuField])
     }
 
     handlePointer(gameVar, pos) {
@@ -33,6 +35,29 @@ export class MenuWindowField {
         } else if (Util.pointInsideRectUI(pos, UI.menuField.buttonExit)) {
             gameVar.menu = false
             gameVar.scene = 'title'
+        }
+    }
+
+    handleKey(gameVar, key) {
+        if (key === 'Escape' || key === 'q') {
+            gameVar.menu = false
+        }
+
+        if (key === 'w' || key === 'ArrowUp') {
+            gameVar.selectedMenuField = (gameVar.selectedMenuField + 2) % 3
+        } else if (key === 's' || key === 'ArrowDown') {
+            gameVar.selectedMenuField = (gameVar.selectedMenuField + 1) % 3
+        }
+
+        if (key === 'Enter') {
+            if (gameVar.selectedMenuField === 0) {
+                gameVar.menu = false
+            } else if (gameVar.selectedMenuField === 1) {
+                gameVar.menu = false
+            } else if (gameVar.selectedMenuField === 2) {
+                gameVar.menu = false
+                gameVar.scene = 'title'
+            }
         }
     }
 }

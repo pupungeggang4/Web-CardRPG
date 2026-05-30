@@ -6,12 +6,14 @@ import {Util} from 'util'
 import {Render} from 'render'
 
 import {MenuWindowBattle} from 'menuwindowbattle'
+import {BattleUI} from 'battleui'
 import {Scene} from 'scene'
 
 export class SceneBattle extends Scene {
     constructor() {
         super()
         this.menuWindowBattle = new MenuWindowBattle()
+        this.battleUI = new BattleUI()
     }
 
     update(gameVar) {
@@ -22,12 +24,11 @@ export class SceneBattle extends Scene {
         let canvas = gameVar.canvas
         let ctx = gameVar.ctx
 
+        ctx.setTransform(1, 0, 0, 1, 0, 0)
         Render.init(ctx)
         Render.clearCanvas(canvas, ctx)
-        gameVar.ctx.fillStyle = 'white'
-        Render.fillCanvas(canvas, ctx)
-        gameVar.ctx.fillStyle = 'black'
-
+        
+        this.battleUI.render(gameVar)
         Render.drawImageUI(ctx, Img.buttonMenu, UI.battle.buttonMenu)
 
         if (gameVar.menu === true) {
@@ -57,5 +58,16 @@ export class SceneBattle extends Scene {
 
     pointerUp(gameVar, pos, button) {
 
+    }
+
+    keyDown(gameVar, key) {
+        if (gameVar.menu === false) {
+            if (key === 'Escape' || key === 'q') {
+                gameVar.menu = true
+                gameVar.selectedMenuBattle = 0
+            }
+        } else if (gameVar.menu === true) {
+            this.menuWindowBattle.handleKey(gameVar, key)
+        }
     }
 }

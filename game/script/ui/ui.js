@@ -25,6 +25,7 @@ export class UI {
 
     static battle = {
         buttonMenu: [1180, 20, 80, 80],
+        crystalArea: [1100, 540, 160, 160],
     }
 
     static collection = {
@@ -40,6 +41,7 @@ export class UI {
         textSave: [340, 380],
         buttonExit: [320, 440, 640, 80],
         textExit: [340, 460],
+        arrow: [[240, 280, 80, 80], [240, 360, 80, 80], [240, 440, 80, 80]]
     }
 
     static menuBattle = {
@@ -51,6 +53,6 @@ export class UI {
         textSurrender: [340, 380],
         buttonExit: [320, 440, 640, 80],
         textExit: [340, 460],
+        arrow: [[240, 280, 80, 80], [240, 360, 80, 80], [240, 440, 80, 80]]
     }
-
 }

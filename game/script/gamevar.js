@@ -1,4 +1,6 @@
 import {Field} from 'field'
+import {Battle} from 'battle'
+import {Player} from 'player'
 
 export class GameVar {
     constructor() {
@@ -24,9 +26,13 @@ export class GameVar {
 
         this.save = {}
 
+        this.player = new Player()
         this.field = new Field()
+        this.battle = new Battle()
         this.scene = 'title'
 
         this.selectedTitle = 0
+        this.selectedMenuField = 0
+        this.selectedMenuBattle = 0
     }
 }

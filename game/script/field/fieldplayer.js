@@ -3,8 +3,8 @@ import {Vec2, Rect2} from 'primitive'
 import {FieldEntity} from 'fieldentity'
 
 export class FieldPlayer extends FieldEntity {
-    constructor(game) {
-        super(game)
+    constructor() {
+        super()
         this.moveMap = {
             'left': new Vec2(-1, 0), 'right': new Vec2(1, 0),
             'up': new Vec2(0, -1), 'down': new Vec2(0, 1)

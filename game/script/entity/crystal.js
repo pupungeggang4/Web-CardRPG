@@ -1,11 +1,10 @@
-export class Unit {
+export class Crystal {
     constructor() {
         this.ID = 0
+        this.element = ''
 
-        this.attack = 0
-        this.life = 0
-        this.lifeMax = 0
-
+        this.energy = []
+        this.rarity = ''
         this.effect = []
 
         this.name = ''

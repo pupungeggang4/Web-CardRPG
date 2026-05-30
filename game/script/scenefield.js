@@ -67,6 +67,7 @@ export class SceneField extends Scene {
             if (gameVar.menu === false) {
                 if (Util.pointInsideRectUI(pos, UI.field.buttonMenu)) {
                     gameVar.menu = true
+                    gameVar.selectedMenuField = 0
                 }
 
                 if (gameVar.state === '') {
@@ -84,6 +85,10 @@ export class SceneField extends Scene {
 
     keyDown(gameVar, key) {
         if (gameVar.menu === false) {
+            if (key === 'Escape' || key === 'q') {
+                gameVar.menu = true
+                gameVar.selectedMenuField = 0
+            }
             if (gameVar.state === '') {
                 if (key === 'i') {
                     gameVar.state = 'info'
@@ -93,6 +98,8 @@ export class SceneField extends Scene {
                     gameVar.state = ''
                 }
             }
+        } else {
+            this.menuWindowField.handleKey(gameVar, key)
         }
     }
 }

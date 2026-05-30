@@ -12,10 +12,12 @@ export class FieldPlayerHandler {
             for (const k in player.moveMap) {
                 if (gameVar.keyPressed[k]) {
                     let tempPosition = Vec2.add(player.gridPos, player.moveMap[k])
-                    player.gridPos = tempPosition
-                    player.movingDirection = player.moveMap[k]
-                    movable = true
-                    break
+                    if (!FieldPlayerHandler.wallCollideCheck(gameVar, tempPosition)) {
+                        player.gridPos = tempPosition
+                        player.movingDirection = player.moveMap[k]
+                        movable = true
+                        break
+                    }
                 }
             }
 
@@ -23,10 +25,12 @@ export class FieldPlayerHandler {
                 for (const k in player.moveMap) {
                     if (Util.pointInsideRectUI(gameVar.pointerPos, player.moveArea[k])) {
                         let tempPosition = Vec2.add(player.gridPos, player.moveMap[k])
-                        player.gridPos = tempPosition
-                        player.movingDirection = player.moveMap[k]
-                        movable = true
-                        break
+                        if (!FieldPlayerHandler.wallCollideCheck(gameVar, tempPosition)) {
+                            player.gridPos = tempPosition
+                            player.movingDirection = player.moveMap[k]
+                            movable = true
+                            break
+                        }
                     }
                 }
             }
@@ -50,13 +54,11 @@ export class FieldPlayerHandler {
 
     static render(gameVar, player) {
         let ctx = gameVar.ctx
-        let camera = gameVar.field.camera
 
-        ctx.setTransform(1, 0, 0, 1, player.rect.pos.x - camera.pos.x + camera.size.x / 2, player.rect.pos.y - camera.pos.y + camera.size.y / 2)
         if (player.sprite != null) {
-            ctx.drawImage(player.sprite, -player.rect.pos.x / 2, -player.rect.pos.y / 2, player.rect.size.x, player.rect.size.y)
+            ctx.drawImage(player.sprite, player.rect.pos.x - player.rect.size.x / 2, player.rect.pos.y - player.rect.size.y / 2, player.rect.size.x, player.rect.size.y)
         } else {
-            ctx.strokeRect(-player.rect.size.x / 2, -player.rect.size.y / 2, player.rect.size.x, player.rect.size.y)
+            ctx.strokeRect(player.rect.pos.x - player.rect.size.x / 2, player.rect.pos.y - player.rect.size.y / 2, player.rect.size.x, player.rect.size.y)
         }
     }
 
@@ -70,5 +72,14 @@ export class FieldPlayerHandler {
                 }
             }
         }
+    }
+
+    static wallCollideCheck(gameVar, pos) {
+        for (let i = 0; i < gameVar.field.wall.length; i++) {
+            if (gameVar.field.wall[i][0] === pos.x && gameVar.field.wall[i][1] === pos.y) {
+                return true
+            }
+        }
+        return false
     }
 }

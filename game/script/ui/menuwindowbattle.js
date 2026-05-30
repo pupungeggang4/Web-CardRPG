@@ -19,6 +19,8 @@ export class MenuWindowBattle {
         Render.fillTextUI(ctx, "Surrender", UI.menuBattle.textSurrender)
         Render.strokeRectUI(ctx, UI.menuBattle.buttonExit)
         Render.fillTextUI(ctx, "Exit to Title", UI.menuBattle.textExit)
+
+        Render.strokeRectUI(ctx, UI.menuBattle.arrow[gameVar.selectedMenuBattle])
     }
 
     handlePointer(gameVar, pos) {
@@ -30,6 +32,29 @@ export class MenuWindowBattle {
         } else if (Util.pointInsideRectUI(pos, UI.menuBattle.buttonExit)) {
             gameVar.menu = false
             gameVar.scene = 'title'
+        }
+    }
+
+    handleKey(gameVar, key) {
+        if (key === 'q' || key === 'Escape') {
+            gameVar.menu = false
+        }
+        if (key === 'w' || key === 'ArrowUp') {
+            gameVar.selectedMenuBattle = (gameVar.selectedMenuBattle + 2) % 3
+        } else if (key === 's' || key === 'ArrowDown') {
+            gameVar.selectedMenuBattle = (gameVar.selectedMenuBattle + 1) % 3
+        }
+
+        if (key === 'Enter') {
+            if (gameVar.selectedMenuBattle === 0) {
+                gameVar.menu = false
+            } else if (gameVar.selectedMenuBattle === 1) {
+                gameVar.menu = false
+                gameVar.scene = 'field'
+            } else if (gameVar.selectedMenuBattle === 2) {
+                gameVar.menu = false
+                gameVar.scene = 'title'
+            }
         }
     }
 }

@@ -16,9 +16,18 @@ export class FieldHandler {
 
     static render(gameVar, field) {
         let ctx = gameVar.ctx
+        let camera = field.camera
+
+        ctx.setTransform(1, 0, 0, 1, -camera.pos.x + camera.size.x / 2, -camera.pos.y + camera.size.y / 2)
+
+        for (let i = 0; i < field.wall.length; i++) {
+            ctx.fillRect(field.wall[i][0] * 64 - 32, field.wall[i][1] * 64 - 32, 64, 64)
+        }
+
         for (let i = 0; i < field.entityList.length; i++) {
             FieldEntityHandler.renderEntity(gameVar, field.entityList[i])
         }
+
         FieldPlayerHandler.render(gameVar, field.player)
     }
 }
