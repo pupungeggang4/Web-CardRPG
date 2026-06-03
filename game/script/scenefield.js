@@ -39,13 +39,13 @@ export class SceneField extends Scene {
         FieldHandler.render(gameVar, gameVar.field)
 
         ctx.setTransform(1, 0, 0, 1, 0, 0)
-        Render.strokeRectUI(ctx, UI.field.arrow.left)
-        Render.strokeRectUI(ctx, UI.field.arrow.right)
-        Render.strokeRectUI(ctx, UI.field.arrow.up)
-        Render.strokeRectUI(ctx, UI.field.arrow.down)
+        Render.drawImageUI(ctx, Img.arrowLeft, UI.field.arrow.left)
+        Render.drawImageUI(ctx, Img.arrowRight, UI.field.arrow.right)
+        Render.drawImageUI(ctx, Img.arrowUp, UI.field.arrow.up)
+        Render.drawImageUI(ctx, Img.arrowDown, UI.field.arrow.down)
 
-        Render.strokeRectUI(ctx, UI.field.buttonInteract)
-        Render.strokeRectUI(ctx, UI.field.buttonInfo)
+        Render.drawImageUI(ctx, Img.interact, UI.field.buttonInteract)
+        Render.drawImageUI(ctx, Img.info, UI.field.buttonInfo)
         Render.drawImageUI(ctx, Img.buttonMenu, UI.field.buttonMenu)
 
         if (gameVar.state === 'save') {

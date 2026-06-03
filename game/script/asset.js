@@ -1,7 +1,15 @@
 export class Img {
     static loadPair = [
         ['buttonMenu', 'asset/image/button_menu.png'],
-        ['save', 'asset/image/save.png']
+        ['save', 'asset/image/save.png'],
+        ['arrowLeft', 'asset/image/arrow_left.png'],
+        ['arrowRight', 'asset/image/arrow_right.png'],
+        ['arrowUp', 'asset/image/arrow_up.png'],
+        ['arrowDown', 'asset/image/arrow_down.png'],
+        ['info', 'asset/image/info.png'],
+        ['interact', 'asset/image/interact.png'],
+        ['buttonClose', 'asset/image/button_close.png'],
+        ['enemy', 'asset/image/enemy.png']
     ]
 }
 

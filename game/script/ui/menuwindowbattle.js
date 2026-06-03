@@ -1,3 +1,5 @@
+import {Img} from 'asset'
+
 import {UI} from 'ui'
 import {GameVar} from 'gamevar'
 
@@ -20,7 +22,7 @@ export class MenuWindowBattle {
         Render.strokeRectUI(ctx, UI.menuBattle.buttonExit)
         Render.fillTextUI(ctx, "Exit to Title", UI.menuBattle.textExit)
 
-        Render.strokeRectUI(ctx, UI.menuBattle.arrow[gameVar.selectedMenuBattle])
+        Render.drawImageUI(ctx, Img.arrowRight, UI.menuBattle.arrow[gameVar.selectedMenuBattle])
     }
 
     handlePointer(gameVar, pos) {

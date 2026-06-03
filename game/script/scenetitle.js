@@ -1,3 +1,4 @@
+import {Img} from 'asset'
 import {UI} from 'ui'
 import {GameVar} from 'gamevar'
 
@@ -30,7 +31,7 @@ export class SceneTitle extends Scene {
         Render.strokeRectUI(ctx, UI.title.buttonErase)
         Render.fillTextUI(ctx, "Erase Data", UI.title.textErase)
 
-        Render.strokeRectUI(ctx, UI.title.arrow[gameVar.selectedTitle])
+        Render.drawImageUI(ctx, Img.arrowRight, UI.title.arrow[gameVar.selectedTitle])
     }
 
     pointerDown(gameVar, pos, button) {

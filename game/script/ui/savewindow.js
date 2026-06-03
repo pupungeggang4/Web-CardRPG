@@ -1,3 +1,5 @@
+import {Img} from 'asset'
+
 import {UI} from 'ui'
 import {GameVar} from 'gamevar'
 
@@ -24,7 +26,7 @@ export class SaveWindow {
         Render.strokeRectUI(ctx, UI.saveWindow.buttonNo)
         Render.fillTextUI(ctx, 'No', UI.saveWindow.textNo)
 
-        Render.strokeRectUI(ctx, UI.saveWindow.arrow[gameVar.selectedSave])
+        Render.drawImageUI(ctx, Img.arrowRight, UI.saveWindow.arrow[gameVar.selectedSave])
     }
 
     handlePointer(gameVar, pos) {

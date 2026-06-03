@@ -1,3 +1,5 @@
+import {Img} from 'asset'
+
 import {UI} from 'ui'
 import {GameVar} from 'gamevar'
 
@@ -16,7 +18,7 @@ export class InfoWindow {
         Render.strokeRectUI(ctx, UI.info.rect)
         ctx.fillStyle = 'black'
 
-        Render.strokeRectUI(ctx, UI.info.buttonClose)
+        Render.drawImageUI(ctx, Img.buttonClose, UI.info.buttonClose)
     }
 
     handlePointer(gameVar, pos) {
