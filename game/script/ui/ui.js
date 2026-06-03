@@ -15,6 +15,7 @@ export class UI {
         arrow: {
             left: [20, 520, 80, 80], right: [220, 520, 80, 80], up: [120, 420, 80, 80], down: [120, 620, 80, 80]
         },
+        buttonInteract: [1080, 620, 80, 80],
         buttonInfo: [1180, 620, 80, 80]
     }
 
@@ -33,15 +34,23 @@ export class UI {
     }
 
     static menuField = {
-        rect: [320, 200, 640, 320],
-        textPaused: [340, 220],
-        buttonResume: [320, 280, 640, 80],
-        textResume: [340, 300],
-        buttonSave: [320, 360, 640, 80],
-        textSave: [340, 380],
-        buttonExit: [320, 440, 640, 80],
-        textExit: [340, 460],
-        arrow: [[240, 280, 80, 80], [240, 360, 80, 80], [240, 440, 80, 80]]
+        rect: [320, 240, 640, 240],
+        textPaused: [340, 260],
+        buttonResume: [320, 320, 640, 80],
+        textResume: [340, 340],
+        buttonExit: [320, 400, 640, 80],
+        textExit: [340, 420],
+        arrow: [[240, 320, 80, 80], [240, 400, 80, 80]]
+    }
+
+    static saveWindow = {
+        rect: [320, 240, 640, 240],
+        textSave: [340, 260],
+        buttonYes: [420, 380, 160, 80],
+        textYes: [440, 400],
+        buttonNo: [780, 380, 160, 80],
+        textNo: [800, 400],
+        arrow: [[340, 380, 80, 80], [700, 380, 80, 80]],
     }
 
     static menuBattle = {

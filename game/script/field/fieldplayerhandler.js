@@ -82,4 +82,14 @@ export class FieldPlayerHandler {
         }
         return false
     }
+
+    static interact(gameVar, player) {
+        let pos = player.gridPos
+        for (let i = 0; i < gameVar.field.saveList.length; i++) {
+            let save = gameVar.field.saveList[i]
+            if (save.gridPos.x === pos.x && save.gridPos.y === pos.y) {
+                gameVar.state = 'save'
+            }
+        }
+    }
 }

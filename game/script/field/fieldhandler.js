@@ -28,6 +28,10 @@ export class FieldHandler {
             FieldEntityHandler.renderEntity(gameVar, field.entityList[i])
         }
 
+        for (let i = 0; i < field.saveList.length; i++) {
+            FieldEntityHandler.renderEntity(gameVar, field.saveList[i])
+        }
+
         FieldPlayerHandler.render(gameVar, field.player)
     }
 }

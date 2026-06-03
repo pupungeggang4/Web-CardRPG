@@ -34,5 +34,6 @@ export class GameVar {
         this.selectedTitle = 0
         this.selectedMenuField = 0
         this.selectedMenuBattle = 0
+        this.selectedSave = 0
     }
 }

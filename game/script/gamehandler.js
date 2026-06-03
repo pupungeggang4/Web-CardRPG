@@ -89,9 +89,10 @@ export class GameHandler {
     }
 
     keyDown(event, gameVar) {
-        event.preventDefault()
-
         let key = event.key
+
+        if (key === 'Enter' || key === 'ArrowUp' || key === 'ArrowDown' || key === 'ArrowLeft' || key === 'ArrowRight')
+            event.preventDefault()
         for (const k in gameVar.keyPressed) {
             if (key === gameVar.keyMapping[k]) {
                 gameVar.keyPressed[k] = true

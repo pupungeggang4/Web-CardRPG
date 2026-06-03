@@ -1,5 +1,8 @@
 export class Img {
-    static loadPair = [['buttonMenu', 'asset/image/button_menu.png']]
+    static loadPair = [
+        ['buttonMenu', 'asset/image/button_menu.png'],
+        ['save', 'asset/image/save.png']
+    ]
 }
 
 export class Aud {
