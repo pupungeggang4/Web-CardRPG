@@ -26,6 +26,10 @@ export class UI {
 
     static battle = {
         buttonMenu: [1180, 20, 80, 80],
+        enemyHero: [580, 20, 120, 120],
+        enemyUnit: [280, 140, 120, 120],
+        playerHero: [580, 380, 120, 120],
+        playerUnit: [280, 260, 120, 120],
         crystalArea: [1100, 540, 160, 160],
     }
 
